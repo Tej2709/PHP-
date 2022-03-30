@@ -1,6 +1,7 @@
 <?php
 error_reporting(0);
-$id =$_GET['id'];
+$id = $_GET['id'];
+//echo $id; 
 $query = "SELECT * FROM student where id='$id' ";
 $data = mysqli_query($conn, $query);
 $total = mysqli_num_rows($data);
@@ -24,6 +25,10 @@ $result =mysqli_fetch_assoc($data);
 <body> 
 
 <?php
+// echo "<pre>";
+// print_r($_POST);
+// echo "</pre>";
+// exit
  require ("sql.php");
  error_reporting(0);
   $query = "SELECT * FROM student where id = '".$_GET['id']."'";
@@ -39,16 +44,23 @@ else
 {
         $raw = mysqli_fetch_assoc($data);
 
-        //echo "<pre>";
-        //print_r($_POST);
-        //echo "</pre>";
+        
         if(count($_POST)>0)
         {
             if($_GET['id']==$_POST['sid'])
             {
                 //echo "thanks"; exit;
                 $name = $_POST['fname'];
-                $query = "UPDATE student SET fname = '$name', '$lname' ,'$email', '$password', '$conpassword', '$address','$designation','$gender' WHERE id=".$_GET['id'];
+                $lname= $_POST['lname'];
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $conpassword =$_POST['conpassword'];
+                $address=$_POST['address'];
+                $designation=$_POST['designation'];
+                $gender =$_POST['gender'];
+                $file=$_FILES['fileToUpload']['name'];
+
+                $query = "UPDATE student SET fname = '$name', lname = '$lname' , email ='$email', password='$password', conpassword='$conpassword', address='$address', designation='$designation', gender='$gender',file='$file' WHERE id=".$_GET['id'];
                 $update = mysqli_query($conn,$query);
                 if($update)
                 {
@@ -69,7 +81,7 @@ else
         // print_r($raw);
         // echo "</pre>";
 ?>
-  <form method="POST">
+  <form method="POST" enctype="multipart/form-data"> 
       <input type="hidden" name="sid" value="<?=$raw['id']?>"> 
   <div class="container">
     <div class="title">
@@ -107,10 +119,11 @@ else
           <input type="password" class="input" placeholder="Enter Your Confirm Password" name="conpassword" value="<?=$raw['conpassword']?>">
         </div>
 
+        <!--GENDER-->
         
           <label>Gender</label>
-          <input type="radio" class="input" value="male <?=$raw['gender']?>">Male
-          <input type="radio" class="input" value="female"<?=$raw['gender']?>>Female
+          <input type="radio" class="input" value="1" name="gender"<?php if($raw['gender']=="1"){echo "checked";}?>>Male
+          <input type="radio" class="input" value="0" name="gender"<?php if($raw['gender']=="0"){echo "checked";}?>>Female
         
 
       <!--ADDRESS-->
@@ -128,15 +141,21 @@ else
       <!--Choose Designation-->
      <div class="input_field">
       Designation:  
-          <select name="designation" class="designation" name="designation" value="<?=$raw['designation']?>">
+          <select name="designation" class="designation" name="designation">
             <option value="">Select Your Designation</option>
-            <option value="Project Manager">Project Manager </option>
-            <option value="Jr Developer">Jr Developer</option>
-            <option value="Sr Developer">Sr Developer</option>
-            <option value="Human Resources">Human Resources</option>
+            <option value="Project Manager" <?php if($raw['designation']=="Project Manager") { echo "selected=selected"; } else {echo "";} ?> >Project Manager </option>
+            <option value="Jr Developer" <?php if($raw['designation']=="Jr Developer") { echo "selected=selected"; } else {echo "";} ?>>Jr Developer</option>
+            <option value="Sr Developer" <?php if($raw['designation']=="Sr Developer") { echo "selected=selected"; } else {echo "";} ?> >Sr Developer</option>
+            <option value="Human Resources" <?php if($raw['designation']=="Human Resources") { echo "selected=selected"; } else {echo "";} ?>>Human Resources</option>
           </select>
-     </div>
+      </div>
           <br> <br>
+
+      <!--File Upload-->
+           <div class="input_field">
+             <label>Upload File</label>
+            <input type="file" id="fileToUpload" name="fileToUpload" value="<?php echo $raw['file']; ?>">
+          </div>
 
           <div class="input_field">
           <input type="submit" class="btn" value="Update Details" name="submit" >
