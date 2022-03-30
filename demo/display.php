@@ -44,7 +44,7 @@ function deletere(str) {
          <p><span id="txtHint"></span></p>
          </center>
          <center>
-        <table border="2" cellspacing="5" width ="90%">
+        <table border="2" cellspacing="5" width ="100%">
             <tr>
             <th width="10%">Id</th>
             <th width="10%">Firstname</th>
@@ -52,8 +52,10 @@ function deletere(str) {
             <th width="20%">Email</th>
             <th width="10%">Password</th>
             <th width="10%">Confirm Password</th>
-            <th width="20%">Address</th>
+            <th width="10%">Address</th>
             <th width="10%">Designation</th>
+            <th width="10">Gender</th>
+            <th width="10">File</th>
             <th width="10%" colspan="3">Actions</th>
             </tr>
 </center>
@@ -74,6 +76,8 @@ function deletere(str) {
         <td><?=$result['conpassword']?></td>
         <td><?=$result['address']?></td>
         <td><?=$result['designation']?></td>
+        <td><?=$result['gender']?></td>
+        <td><?=$result['file']?></td>
         <td><a href='update.php?id=<?=$result['id']?>'>Update </a></td>
         <td><a href="#" onclick="deletere(<?php echo $result['id'];?>)">Delete </a></td>
       </tr>
