@@ -10,7 +10,7 @@ function deletere(str) {
         if(this.responseText==1)
         { 
             document.getElementById("txtHint").innerHTML = "Record deleted successfully";
-            setInterval('window.location.reload()', 4000);
+            setInterval('window.location.reload()', 2000);
         }
         else
         {
@@ -94,4 +94,10 @@ function deletere(str) {
 
     ?>
     </table>
+
+    <div class="input_field">
+            
+            <a href="Logoutt.php" class="btn">Logout</a>
+          </div>
+            
       

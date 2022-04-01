@@ -2,13 +2,13 @@
 			
 			 
 			 var $FNameLNameRegEx = /^([a-zA-Z]{2,20})$/;
-			 var $PasswordRegEx = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{4,12}$/;
+			 var $PasswordRegEx = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,12}$/;
 			 var $EmailIdRegEx = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,8}\b$/;
 
-		$(document).ready(function(){
+			$(document).ready(function(){
 				
 				
-				var fnameflag=false,lnameflag=false,emailflag=false,passwordflag=false,addressflag=fase,;
+				var fnameflag=false,lnameflag=false,birthdateflag=false,ageflag=false,contactflag=false,emailflag=false,passwordflag=false;
 				$("#Fname").blur(function(){
 					$("#name_err").empty();
 					if($(this).val()=="" || $(this).val()==null)
@@ -68,16 +68,16 @@
 					if($(this).val()=="" || $(this).val()==null)
 					{
 						$("#pass_err").html("(*) Password required..!!");
-						passwordflag=false;
+						emailflag=false;
 					}
 					else{
 						if(!$(this).val().match($PasswordRegEx))
 						{
 							$("#pass_err").html("(*) Invalid Password..!!");
-							passwordflag=false;
+							emailflag=false;
 						}
 						else{
-							passwordflag=true;
+							emailflag=true;
 						}
 					}
 				});
@@ -86,10 +86,10 @@
 					if($(this).val()=="" || $(this).val()==null)
 					{
 						$("#add_err").html("(*) Address required..!!");
-						addressflag=false;
+						emailflag=false;
 					}
 					else{
-						addressflag=true;
+						emailflag=true;
 					}
 				});
 				$("#designation").blur(function(){

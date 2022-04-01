@@ -9,10 +9,17 @@
     echo "After Merging the array";
     echo "<br>";
 
- $c= array_merge($a,$b);
+ $c= array_merge($a[0],$b);
 
-   foreach($a as $value)
+   foreach($a as $key => $value)
    {
-      
+      if(is_array($value))
+      {
+         $a[$key]=array_merge($value,$b);
+      }
    }
+
+   echo "<pre>";
+   print_r($a);
+   echo "</pre>";
 ?>

@@ -1,6 +1,6 @@
 <?php
  require ("sql.php");
-
+ require("deletefile.php");
  //echo $_GET['id']; exit;
  error_reporting(0);
   $query = "SELECT * FROM student where id = '".$_GET['id']."'";
@@ -20,3 +20,4 @@ else
     echo "Error deleting record: " . $conn->error;
     }
 }
+?>

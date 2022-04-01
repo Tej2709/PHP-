@@ -261,12 +261,12 @@ $name = $email = $gender1 = $address = $designation1= "";
 
       <!--Submit Button-->
           <div class="input_field">
-          <input type="submit" class="btn" name="submit" onclick="window.location.href='./login.php';">
+          <input type="submit" class="btn" name="submit" onclick="window.location.href='login.php';">
           </div>
 
           <div class="input_field">
             
-            <a href="login.php" class="btn">Login</a>
+            <a href="login.php" class="btn" onclick="login.php ">Login</a>
           </div>
   </div>
   </div>

@@ -49,17 +49,13 @@
       <!--PASSWORD-->
         <div class="input_field">
           <label> Password </label>
-          <input type="password" class="input" placeholder="Create Your Password" name="password">
+          <input type="password" class="input" placeholder="Enter Your Password" name="password">
         </div>
           <div class="input_field">
-            <input type="submit"  class="btn" name="button">
+            <input type="submit" value="Login"  class="btn" name="button">
           </div>
 
-          <div class="input_field">
-            
-            <a href="Logoutt.php" class="btn">Logout</a>
-          </div>
-            
+          
             
     </div>
   </div>

@@ -58,9 +58,9 @@ else
                 $address=$_POST['address'];
                 $designation=$_POST['designation'];
                 $gender =$_POST['gender'];
-                $file=$_FILES['fileToUpload']['name'];
+                
 
-                $query = "UPDATE student SET fname = '$name', lname = '$lname' , email ='$email', password='$password', conpassword='$conpassword', address='$address', designation='$designation', gender='$gender',file='$file' WHERE id=".$_GET['id'];
+                $query = "UPDATE student SET fname = '$name', lname = '$lname' , email ='$email', password='$password', conpassword='$conpassword', address='$address', designation='$designation', gender='$gender' WHERE id=".$_GET['id'];
                 $update = mysqli_query($conn,$query);
                 if($update)
                 {
@@ -124,7 +124,8 @@ else
           <label>Gender</label>
           <input type="radio" class="input" value="1" name="gender"<?php if($raw['gender']=="1"){echo "checked";}?>>Male
           <input type="radio" class="input" value="0" name="gender"<?php if($raw['gender']=="0"){echo "checked";}?>>Female
-        
+          <br>
+          <br>
 
       <!--ADDRESS-->
         <div class="input_field">
@@ -150,12 +151,6 @@ else
           </select>
       </div>
           <br> <br>
-
-      <!--File Upload-->
-           <div class="input_field">
-             <label>Upload File</label>
-            <input type="file" id="fileToUpload" name="fileToUpload" value="<?php echo $raw['file']; ?>">
-          </div>
 
           <div class="input_field">
           <input type="submit" class="btn" value="Update Details" name="submit" >
