@@ -1,9 +1,46 @@
 <?php
  include ("psql.php");
- if(isset($_POST['submit']))
- {
-      
- }
+ if(isset($_POST['submit'])){
+
+  if(!empty($_POST['fname']) && !empty($_POST['lname']) && !empty($_POST['password']))
+  {
+          $fname =$_POST['fname'];
+          $lname =$_POST['lname'];
+          $password =$_POST['password'];
+          $tech =$_POST['check'];
+          $tech=implode(",",$_POST['check']);
+
+          $query ="INSERT INTO demo values ('','".$fname."','".$lname."','".$password."','".$tech."')";
+          $data=mysqli_query($conn,$query);
+        
+          if($data)
+          {
+              echo"Data Inserted";
+
+          }
+          else{
+              echo"Data Inserted failed";
+          }
+  }
+  else
+  {
+      echo "All fields are required";
+  }
+
+  // $tech =$_POST['check'];
+  // foreach($tech as $check)
+  // {
+  //   echo $check;
+  // }
+
+  $tech=$_POST['check'];
+
+  $tech=implode(",", $_POST['check']);
+
+
+
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -15,7 +52,7 @@
   <title>Pratice Form</title>
 </head>
 <body>
-  <form method="POST">
+  <form  action= "" method="POST">
     <!--Fname--->
     Firstname
     <input type="text" name="fname" id="fname" placeholder="Enter your name ">
@@ -33,16 +70,17 @@
 
     <!--CHECKBOX-->
 
-    <input type="checkbox" name="check1" id="c1[]" value="PHP">PHP <br> 
+    <input type="checkbox" name="check[]"  value="PHP" >PHP <br> 
     
-    <input type="checkbox" name="check2" id="c1[]" value="JAVA">JAVA <br>
+    <input type="checkbox" name="check[]"  value="JAVA">JAVA <br>
     
-    <input type="checkbox" name="check3" id="c1[]" value="REACT">REACT JS
+    <input type="checkbox" name="check[]"  value="REACT">REACT JS
     <br><br>
 
+   
     <!--button-->
 
-    <input type="submit" value="Submit" >
+    <button type="submit" value="submit" name="submit"  >Submit </button>
 
     
 
@@ -51,3 +89,5 @@
 
 </body>
 </html>
+
+

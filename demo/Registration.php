@@ -1,5 +1,6 @@
 <?php
 require("Sql.php");
+require('validation.php');
 
 if(isset($_POST['submit']))
 {
