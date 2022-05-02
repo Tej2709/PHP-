@@ -1,6 +1,7 @@
 <?php
 require("Sql.php");
-require('validation.php');
+//require('validation.php');
+
 
 if(isset($_POST['submit']))
 {
@@ -100,8 +101,8 @@ echo "</pre>";*/
 <?php
 
 // define variables and set to empty values
-$nameErr = $emailErr = $genderErr = $addressErr =  $designationErr= "";
-$name = $email = $gender1 = $address = $designation1= "";
+$nameErr = $lnameErr = $emailErr = $passErr = $conpassErr = $genderErr = $addressErr =  $designationErr= "";
+$name = $lname = $email = $pass = $conpass = $gender1 = $address = $designation1= "";
 
 //if ($_SERVER["REQUEST_METHOD"] == "GET") {
   if (empty($_POST["fname"])) {
@@ -110,10 +111,29 @@ $name = $email = $gender1 = $address = $designation1= "";
     $name = ($_POST["fname"]);
   }
 
+  if (empty($_POST["lname"])) {
+    $lnameErr = "Last Name is Required";
+  } else {
+    $lname = ($_POST["lname"]);
+  }
+
+
   if (empty($_POST["email"])) {
     $emailErr = "Email is Required";
   } else {
     $email =($_POST["email"]);
+  }
+
+  if (empty($_POST["password"])) {
+    $passErr = "Password is Required";
+  } else {
+    $pass =($_POST["password"]);
+  }
+
+  if (empty($_POST["conpassword"])) {
+    $conpassErr = "Please enter confirmation password";
+  } else {
+    $conpass =($_POST["conpassword"]);
   }
 
   if (empty($_POST["address"])) {
@@ -135,144 +155,155 @@ $name = $email = $gender1 = $address = $designation1= "";
   else{
     $gender=($_POST["gender"]);
   }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet" type="text/css" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="   crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+        integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registration Form</title>
-  <link href="./bootstrap/bootstrap.css" type="text/css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="./style.css">
-  <script src="V.js" type="text/javascript"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link href="./bootstrap/bootstrap.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="./Form/V.js" type="text/javascript"></script>
 
 </head>
-<body> 
-  <form action="#" method="POST" onsubmit="return validation()" enctype="multipart/form-data"> 
-  <div class="container">
-    <div class="title">
-      Registration Form 
-    </div>
 
-    <div class="form">
-      <!--FIRST NAME-->  
-      <div class="form-group">
-          <div class="input_field">
-            <label> First Name </label>
-            <input type="text" class="input" placeholder="Enter Your First Name" name="fname" id="Fname" autocomplete="off">
-          </div>
-          <span id="name_err"  class="text-danger"></span>
-      </div>
+<body>
+    <form action="#" method="POST" onsubmit="return validation()" enctype="multipart/form-data">
+        <div class="container">
+            <div class="title">
+                Registration Form
+            </div>
 
-      
-      <!--LAST NAME-->
+            <div class="form">
+                <!--FIRST NAME-->
+                <div class="form-group">
+                    <div class="input_field">
+                        <label> First Name </label>
+                        <input type="text" class="input" placeholder="Enter Your First Name" name="fname" id="Fname"
+                            autocomplete="off">
+                    </div>
+                    <span id="name_err" class="text-danger"></span>
+                </div>
 
-      <div class="form-group">
-        <div class="input_field">
-          <label> Last Name </label>
-          <input type="text" class="input" placeholder="Enter Your Last Name" name="lname" autocomplete="off" id="Lname">
+
+                <!--LAST NAME-->
+
+                <div class="form-group">
+                    <div class="input_field">
+                        <label> Last Name </label>
+                        <input type="text" class="input" placeholder="Enter Your Last Name" name="lname"
+                            autocomplete="off" id="Lname">
+                    </div>
+                    <span id="lastname" class="text-danger"></span>
+                </div>
+
+
+                <!--EMAIL-->
+
+                <div class="form-group">
+                    <div class="input_field">
+                        <label> Email </label>
+                        <input type="email" class="input" placeholder="Enter Your Email Here." name="email" id="Email"
+                            autocomplete="off">
+                    </div>
+                    <span id="email_err" class="text-danger"></span>
+                </div>
+
+
+                <!--PASSWORD-->
+
+                <div class="form-group">
+                    <div class="input_field">
+                        <label> Password </label>
+                        <input type="password" class="input" placeholder="Create Your Password" name="password"
+                            id="Password">
+                    </div>
+                    <span id="pass_err" class="text-danger"></span>
+                </div>
+
+                <!--CONFIRM PASSWORD-->
+
+                <div class="form-group">
+                    <div class="input_field">
+                        <label> Confirm Password </label>
+                        <input type="password" class="input" placeholder="Enter Your Confirm Password"
+                            name="conpassword" id="ConPassword">
+                    </div>
+                    <span id="conpass_err" class="text-danger"></span>
+                </div>
+
+                <!--ADDRESS-->
+
+                <div class="form-group">
+                    <div class="input_field">
+                        <label> Address</label>
+                        <textarea rows="3" cols="30" placeholder="Enter Your Address" class="input" name="address"
+                            id="Address"> </textarea>
+                    </div>
+                    <span id="add_err" class="text-danger "> </span>
+                </div>
+
+
+
+
+                <!--Choose Designation-->
+
+                <div class="form-group">
+                    <div class="input_field">
+                        <label> Designation</label>
+                        <select name="designation" class="designation" name="designation">
+                            <option value="">Select Your Designation</option>
+                            <option value="Project Manager">Project Manager </option>
+                            <option value="Jr Developer">Jr Developer</option>
+                            <option value="Sr Developer">Sr Developer</option>
+                            <option value="Human Resources">Human Resources</option>
+                        </select>
+                    </div>
+                    <span id="designation_err" class="text-danger"></span>
+                </div>
+                <br>
+
+                <!--Gender-->
+
+                <div class="form-group">
+                    <label>Gender</label>
+                    <input type="radio" name="gender" value="male" class="input">Male
+                    <input type="radio" name="gender" value="female" class="input">Female
+                </div>
+                <br> <br>
+
+                <!--File Upload-->
+                <div class="input_field">
+                    <input type="file" id="fileToUpload" name="fileToUpload">
+                </div>
+                <span>Please Upload only .pdf .docs and .xl extension File</span>
+                <br><br />
+
+                <!--Submit Button-->
+                <div class="input_field">
+                    <input type="submit" class="btn" name="submit" onclick="window.location.href='login.php';">
+                </div>
+
+                <div class="input_field">
+
+                    <a href="login.php" class="btn" onclick="login.php ">Login</a>
+                </div>
+            </div>
         </div>
-        <span id="lastname"  class="text-danger"></span>
-      </div>
-      
-
-      <!--EMAIL-->
-
-        <div class="form-group">
-        <div class="input_field">
-          <label> Email </label>
-          <input type="email" class="input" placeholder="Enter Your Email Here." name="email" id="Email" autocomplete="off">
-        </div>
-        <span id="email_err" class="text-danger"></span>
-        </div>
-        
-
-      <!--PASSWORD-->
-
-      <div class="form-group">
-        <div class="input_field">
-          <label> Password </label>
-          <input type="password" class="input" placeholder="Create Your Password" name="password" id="Password">
-        </div>
-        <span id="pass_err" class="text-danger"></span>
-      </div>
-
-      <!--CONFIRM PASSWORD-->
-
-      <div class="form-group">
-        <div class="input_field">
-          <label> Confirm Password </label>
-          <input type="password" class="input" placeholder="Enter Your Confirm Password" name="conpassword" id="ConPassword">
-        </div>
-        <span id="conpass_err" class="text-danger"></span>
-      </div>
-      
-      <!--ADDRESS-->
-
-        <div class="form-group">
-        <div class="input_field">
-          <label> Address</label>
-          <textarea rows="3" cols="30" placeholder="Enter Your Address" class="input" name="address" id="Address"> </textarea>
-        </div>
-        <span id="add_err" class="text-danger "> </span>
-        </div>
-        
-
-      
-      
-      <!--Choose Designation-->
-
-     <div class="form-group">
-     <div class="input_field">
-      Designation:  
-          <select name="designation" class="designation" name="designation">
-            <option value="">Select Your Designation</option>
-            <option value="Project Manager">Project Manager </option>
-            <option value="Jr Developer">Jr Developer</option>
-            <option value="Sr Developer">Sr Developer</option>
-            <option value="Human Resources">Human Resources</option>
-          </select>
-     </div>
-      <span id="designation_err" class="text-danger"></span>
-     </div>
-          <br>
-
-      <!--Gender-->
-
-          <div class="form-group">
-          <label>Gender</label>
-           <input type="radio" name="gender" value="1" class="input">Male
-           <input type="radio" name="gender" value="0" class="input">Female 
-          </div>
-            <br> <br>
-
-      <!--File Upload-->
-          <div class="input_field">
-            <input type="file" id="fileToUpload" name="fileToUpload">
-          </div>
-
-      <!--Submit Button-->
-          <div class="input_field">
-          <input type="submit" class="btn" name="submit" onclick="window.location.href='login.php';">
-          </div>
-
-          <div class="input_field">
-            
-            <a href="login.php" class="btn" onclick="login.php ">Login</a>
-          </div>
-  </div>
-  </div>
-  </form>
+    </form>
 
 </body>
-</html>
 
+</html>

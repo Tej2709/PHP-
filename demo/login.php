@@ -1,6 +1,6 @@
 <?php
  include ('sql.php');
-
+ session_start();
  if(isset($_POST) && count($_POST)>0)
  {
    $useremail = $_POST['email'];
@@ -12,6 +12,7 @@
     if (mysqli_num_rows($result)>0)
     {
    while($row = mysqli_fetch_assoc($result))
+      $_SESSION['email']=$useremail;
       header("location:display.php");
     }
  

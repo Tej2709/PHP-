@@ -20,6 +20,7 @@ $result =mysqli_fetch_assoc($data);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Update Form</title>
   <link rel="stylesheet" type="text/css" href="./style.css">
+  <script src="./Form/V.js" type="text/javascript"> </script>
 
 </head>
 <body> 
@@ -122,8 +123,8 @@ else
         <!--GENDER-->
         
           <label>Gender</label>
-          <input type="radio" class="input" value="1" name="gender"<?php if($raw['gender']=="1"){echo "checked";}?>>Male
-          <input type="radio" class="input" value="0" name="gender"<?php if($raw['gender']=="0"){echo "checked";}?>>Female
+          <input type="radio" class="input" value="1" name="gender"<?php if($raw['gender']=="male"){echo "checked";}?>>Male
+          <input type="radio" class="input" value="0" name="gender"<?php if($raw['gender']=="female"){echo "checked";}?>>Female
           <br>
           <br>
 

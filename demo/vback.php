@@ -5,10 +5,10 @@
 			 var $PasswordRegEx = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{4,12}$/;
 			 var $EmailIdRegEx = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,8}\b$/;
 
-		$(document).ready(function(){
+			$(document).ready(function(){
 				
 				
-				var fnameflag=false,lnameflag=false,emailflag=false,passwordflag=false,addressflag=fase,;
+				var fnameflag=false,lnameflag=false,emailflag=false,passwordflag=false,addressflag=fase;
 				$("#Fname").blur(function(){
 					$("#name_err").empty();
 					if($(this).val()=="" || $(this).val()==null)
