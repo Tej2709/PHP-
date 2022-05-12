@@ -115,18 +115,19 @@ else
                 </div>
                 <!--PASSWORD-->
 
-                <!-- <div class="input_field">
+                <div class="input_field">
                     <label> Password </label>
                     <input type="password" class="input" placeholder="Create Your Password" name="password"
                         value="<?=$raw['password']?>">
-                </div> -->
+                </div>
 
                 <!--CONFIRM PASSWORD-->
-                <!-- <div class="input_field">
+                
+                <div class="input_field">
                     <label> Confirm Password </label>
                     <input type="password" class="input" placeholder="Enter Your Confirm Password" name="conpassword"
                         value="<?=$raw['conpassword']?>">
-                </div> -->
+                </div>
 
                 <!--GENDER-->
 

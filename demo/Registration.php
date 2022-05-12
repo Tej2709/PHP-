@@ -1,4 +1,9 @@
-
+<?php 
+    // session_start();
+    // if(isset($_SESSION['email'])){
+    //     header("location:login.php ");
+    // }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,6 +32,31 @@
             <div class="title">
                 Registration Form
             </div>
+            <span style="color:red;text-align: center;">
+
+                <?php
+
+                        if (isset($_REQUEST['pass'])) {
+
+                            # code...
+
+                            $pass = $_REQUEST['pass'];
+
+                        ?>
+
+                <p> <?php echo $pass; ?></p>
+
+                <?php
+
+                        } else {
+
+                            $pass = "";
+
+                        }
+
+                        ?>
+
+            </span>
 
             <div class="form">
                 <!--FIRST NAME-->
@@ -70,7 +100,7 @@
                     <div class="input_field">
                         <label> Password </label>
                         <input type="password" class="input" placeholder="Create Your Password" name="password"
-                            id="Password" required autofocus>
+                            id="Password" autofocus required>
                     </div>
                     <span id="pass_err" class="text-danger"></span>
                 </div>
@@ -81,7 +111,7 @@
                     <div class="input_field">
                         <label> Confirm Password </label>
                         <input type="password" class="input" placeholder="Enter Your Confirm Password"
-                            name="conpassword" id="ConPassword" required autofocus>
+                            name="conpassword" id="ConPassword" autofocus required>
                     </div>
                     <span id="conpass_err" class="text-danger"></span>
                 </div>
@@ -91,8 +121,8 @@
                 <div class="form-group">
                     <div class="input_field">
                         <label> Address</label>
-                        <textarea rows="3" cols="30" placeholder="Enter Your Address" class="input" name="address"
-                            id="Address" required > </textarea>
+                        <textarea rows="1" cols="10" placeholder="Enter Your Address" class="input" name="address"
+                            id="Address" required> </textarea>
                     </div>
                     <span id="add_err" class="text-danger "> </span>
                 </div>
@@ -105,7 +135,7 @@
                 <div class="form-group">
                     <div class="input_field">
                         <label> Designation</label>
-                        <select name="designation" class="designation" name="designation" required>
+                        <select name="designation" class="designation" name="designation">
                             <option value="">Select Your Designation</option>
                             <option value="Project Manager">Project Manager </option>
                             <option value="Jr Developer">Jr Developer</option>
@@ -128,14 +158,14 @@
 
                 <!--File Upload-->
                 <div class="input_field">
-                    <input type="file" id="fileToUpload" name="fileToUpload" required>
+                    <input type="file" id="fileToUpload" name="fileToUpload">
                 </div>
                 <span>Please Upload only .pdf .docs and .xl extension File</span>
                 <br><br />
 
                 <!--Submit Button-->
                 <div class="input_field">
-                    <input type="submit" class="btn" name="submit" >
+                    <input type="submit" class="btn" name="submit" id="submit">
                 </div>
 
                 <div class="input_field">

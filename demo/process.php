@@ -4,10 +4,10 @@ include 'file_registration_upload.php';
 
 
 if (isset($_POST) && count($_POST) > 0) {
-  include 'Registration_php_validation.php';
-  if ($error == 0) {
-    print_r($msg);
-  }
+  // include 'Registration_php_validation.php';
+  // if ($error == 0) {
+  //   print_r($msg);
+  // }
 
       $fname = $_POST['fname'];
       $lname = $_POST['lname'];
@@ -18,6 +18,12 @@ if (isset($_POST) && count($_POST) > 0) {
       $designation = $_POST['designation'];
       $gender = $_POST['gender'];
       $file = $_FILES['fileToUpload']['name'];
+if($password != $conpassword)
+{
+  //  echo "not matching password";
+   header('Location:Registration.php?pass=Password and Confirm Password are not the same');
+   exit();
+}
 
 
     if ($fname != "" && $lname != "" && $email != "" && $password != "" && $conpassword != "" && $address != "" && $designation != "" && $gender != "" && $uploadOk == 1) {
