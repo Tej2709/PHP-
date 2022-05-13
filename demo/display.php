@@ -13,22 +13,7 @@ if(!isset($_SESSION))
 ?>
 
 <html>
-<!-- <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <h4 class="modal-title">Delete Record</h4>
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-    </div>
-    <div class="modal-body">
-      <p>Are you sure you want to delete thid record</p>
-      <form method="post" action="display.php" id="display.php">
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-      <button type="button" form="display.php" class="btn btn-danger" >Delete</button>
-    </div>
-  </div>
-</div> -->
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
@@ -55,7 +40,7 @@ function deletere(str) {
     xmlhttp.open("GET", "delete.php?id=" + str, true);
     xmlhttp.send();
   }
-  window.confirm("Are you sure to delete this record");
+  //window.confirm("Are you sure to delete this record");
 
 }
 </script>
