@@ -25,6 +25,13 @@ if($password != $conpassword)
    exit();
 }
 
+$email = $_GET['email'];
+$query = "SELECT * FROM student where email = '" . $email . "' ";
+$data = mysqli_query($conn, $query);
+if (mysqli_num_rows($data) > 0) {
+header('Location:Registration.php');
+exit();
+}
 
     if ($fname != "" && $lname != "" && $email != "" && $password != "" && $conpassword != "" && $address != "" && $designation != "" && $gender != "" && $uploadOk == 1) {
       $query = "INSERT INTO student(fname,lname,email,password,conpassword,address,designation,gender,file) VALUES ('" . $fname . "','" . $lname . "','" . $email . "','" . $password . "','" . $conpassword . "','" . $address . "','" . $designation . "','" . $gender . "','" . $file . "')";

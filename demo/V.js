@@ -6,10 +6,11 @@
 			//var $EmailIdRegEx =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 			var $EmailIdRegEx = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,8}\b$/i;
 			var $ConPassword =  $PasswordRegEx;
+			var fnameflag=false,lnameflag=false,emailflag=false,passwordflag=false,conpasswordflag=false,addressflag=false,designationflag=false;
 			$(document).ready(function(){
 				
 				
-				var fnameflag=false,lnameflag=false,emailflag=false,passwordflag=false,conpasswordflag=false,addressflag=false,designationflag=false;
+				
 				$("#Fname").blur(function(){
 					$("#name_err").empty();
 					if($(this).val()=="" || $(this).val()==null)
@@ -205,7 +206,7 @@
 					}
 				});
 
-				$('#Fname ').keypress(function(e){
+				$('#Fname').keypress(function(e){
 					$('#name_err').empty();
 					var flag= false;
 					(e.which>=65 && e.which<=90) || (e.which>=92 && e.which<=122)

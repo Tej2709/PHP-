@@ -12,7 +12,7 @@
 				var fnameflag=false,lnameflag=false,emailflag=false,passwordflag=false,conpasswordflag=false,addressflag=false,designationflag=false;
 				$("#Fname").blur(function(){
 					$("#name_err").empty();
-					if($(this).val()=="" || $(this).val()==null)
+					if($(this).val()=='')
 					{
 						$("#name_err").html("(*) Firstname required..!!");
 						fnameflag=false;
@@ -30,7 +30,7 @@
 				});
 				$("#Lname").blur(function(){
 					$("#lastname").empty();
-					if($(this).val()=="" || $(this).val()==null)
+					if($(this).val()=="" )
 					{
 						$("#lastname").html("(*) Lastname required..!!");
 						lnameflag=false;
@@ -68,7 +68,7 @@
 				
 				$("#Password").blur(function(){
 					$("#pass_err").empty();
-					if($(this).val()=="" || $(this).val()==null)
+					if($(this).val()=='')
 					{
 						$("#pass_err").html("(*) Password required..!!");
 						passwordflag=false;
@@ -87,7 +87,7 @@
 
 				$("#ConPassword").blur(function(){
 					$("#conpass_err").empty();
-					if($(this).val()=="" || $(this).val()==null)
+					if($(this).val()=='')
 					{
 						$("#conpass_err").html("(*) Confirm Password required..!!");
 						conpasswordflag=false;
@@ -107,7 +107,7 @@
 
 				$("#Address").blur(function(){
 					$("#add_err").empty();
-					if($(this).val()=="" || $(this).val()==null)
+					if($(this).val()=='')
 					{
 						$("#add_err").html("(*) Address required..!!");
 						addressflag=false;
@@ -119,7 +119,7 @@
 				
 				$("#designation").blur(function(){
 					$("#designation_err").empty();
-					if($(this).val()=="" || $(this).val()==null)
+					if($(this).val()=='')
 					{
 						$("#designation_err").html("(*) Select Designation..!!");
 						designationflag=false;
@@ -130,7 +130,7 @@
 				});
 				$('#submit').click(function(){
 					$("#name_err").empty();
-					if($(this).val()=="" || $(this).val()==null)
+					if($(this).val()=='')
 					{
 						$("#name_err").html("(*) Firstname required..!!");
 						fnameflag=false;
@@ -146,7 +146,7 @@
 						}
 					}
 					$("#lastname").empty();
-					if($(this).val()=="" || $(this).val()==null)
+					if($(this).val()=='')
 					{
 						$("#lastname").html("(*) Lastname required..!!");
 						lnameflag=false;
@@ -162,7 +162,7 @@
 						}
 					}
 					$("#email_err").empty();
-					if($(this).val()=="" || $(this).val()==null)
+					if($(this).val()=='')
 					{
 						$("email_err").html("(*) Email required..!!");
 						emailflag=false;
@@ -218,12 +218,12 @@
 					var flag= false;
 					(e.which>=65 && e.which<=90) || (e.which>=92 && e.which<=122)
 					?flag=true
-					:(flag=false,$('#lastname').html('(*) Please Enter Valid Name..'));
+					:(flag=false,$('#lastname').html('(*) Please Enter Last Name..'));
 					return flag;
 				});
 			});
 
-			if (fnameflag == true && lnameflag == true && emailflag == true && passwordflag ==
+			if (  fnameflag == true && lnameflag == true && emailflag == true && passwordflag ==
 				true && conpasswordflag == true && addressflag == true && designationflag == true) {
 					// location.replace("process1.php")
 	
@@ -234,17 +234,3 @@
 				echo("Error to submit form..!!");
 				
 			}
-
-
-			// function onChange(){
-			// 	const password =document.querySelector('input[name="password"]');
-			// 	const conpasswordflag = document.querySelector('input[name="conpassword"]');
-			// 	if(confirm.value == password.value)
-			// 	{
-			// 		confirm.setCustomValidity('');
-			// 	}
-			// 	else 
-			// 	{
-			// 		confirm.setCustomValidity('password does not match');
-			// 	}
-			// }

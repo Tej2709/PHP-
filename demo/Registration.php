@@ -3,6 +3,14 @@
     // if(isset($_SESSION['email'])){
     //     header("location:login.php ");
     // }
+    session_start();
+    if (isset($_SESSION['error_message'])) 
+    {
+        echo "<pre>";
+        print_r($_SESSION['error_message']);
+        echo "</pre>";
+        $_SESSION['error_message'] = "";
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +23,7 @@
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
         integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
+      
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +36,7 @@
 </head>
 
 <body>
-    <form action="process.php" method="POST" onsubmit="return validation()" enctype="multipart/form-data">
+    <form action="process.php" method="POST" onsubmit="return validation()" enctype="multipart/form-data" id="form">
         <div class="container">
             <div class="title">
                 Registration Form
@@ -91,8 +100,19 @@
                             autocomplete="off" required autofocus>
                     </div>
                     <span id="email_err" class="text-danger"></span>
-                </div>
-
+                    <span style="color:red;text-align: center;">
+                        <?php
+                        if (isset($_REQUEST['email'])) {
+                            # code...
+                            $msg2 = $_REQUEST['email'];
+                        ?>
+                            <p> <?php echo $msg2; ?></p>
+                        <?php
+                        } else {
+                            $msg2 = "";
+                        }
+                        ?>
+                   </div>
 
                 <!--PASSWORD-->
 
@@ -151,7 +171,7 @@
 
                 <div class="form-group">
                     <label>Gender</label>
-                    <input type="radio" name="gender" value="male" class="input">Male
+                    <input type="radio" name="gender" value="male" class="input" checked="checked">Male
                     <input type="radio" name="gender" value="female" class="input">Female
                 </div>
                 <br> <br>

@@ -78,124 +78,107 @@ $result = mysqli_fetch_assoc($data);
         // print_r($raw);
         // echo "</pre>";
     ?>
-        <form method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="sid" value="<?= $raw['id'] ?>">
-            <div class="container">
-                <div class="title">
-                    Update Form
+    <form method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="sid" value="<?= $raw['id'] ?>">
+        <div class="container">
+            <div class="title">
+                Update Form
+            </div>
+            <div class="form">
+                <!--FIRST NAME-->
+                <div class="input_field">
+                    <label> First Name </label>
+                    <input type="text" class="input" placeholder="Enter Your First Name" name="fname"
+                        value="<?= $raw['fname'] ?>" id="Fname" required>
+
                 </div>
-                <div class="form">
-                    <!--FIRST NAME-->
-                    <div class="input_field">
-                        <label> First Name </label>
-                        <input type="text" class="input" placeholder="Enter Your First Name" name="fname" value="<?= $raw['fname'] ?>" id="Fname" required>
-
-                    </div>
-                    <span id="name_err" class="text-danger"></span>
+                <span id="name_err" class="text-danger"></span>
 
 
-                    <!--LAST NAME-->
-                    <div class="input_field">
-                        <label> Last Name </label>
-                        <input type="text" class="input" placeholder="Enter Your Last Name" name="lname" value="<?= $raw['lname'] ?>" id="Lname"required>
-                    </div>
-                    <span id="lastname" class="text-danger"></span>
-                    <!--EMAIL-->
+                <!--LAST NAME-->
+                <div class="input_field">
+                    <label> Last Name </label>
+                    <input type="text" class="input" placeholder="Enter Your Last Name" name="lname"
+                        value="<?= $raw['lname'] ?>" id="Lname" required>
+                </div>
+                <span id="lastname" class="text-danger"></span>
+                <!--EMAIL-->
 
-                    <div class="input_field">
-                        <label> Email </label>
-                        <input type="email" class="input" placeholder="Enter Your Email Here." name="email" value="<?= $raw['email'] ?>" id="Email"required>
-                    </div>
-                    <span id="email_err" class="text-danger"></span>
-                    <!--PASSWORD-->
+                <div class="input_field">
+                    <label> Email </label>
+                    <input type="email" class="input" placeholder="Enter Your Email Here." name="email"
+                        value="<?= $raw['email'] ?>" id="Email" required>
+                </div>
+                <span id="email_err" class="text-danger"></span>
 
-                    <div class="input_field">
-                        <label> Password </label>
-                        <input type="password" class="input" placeholder="Create Your Password" name="password" value="<?= $raw['password'] ?>" id="Password"required>
-                    </div>
-                    <span id="pass_err" class="text-danger"></span>
+                <!--PASSWORD-->
 
-                    <!--CONFIRM PASSWORD-->
+                <div class="input_field">
+                    <label> Password </label>
+                    <input type="password" class="input" placeholder="Create Your Password" name="password"
+                        value="<?= $raw['password'] ?>" id="Password" required>
+                </div>
+                <span id="pass_err" class="text-danger"></span>
 
-                    <div class="input_field">
-                        <label> Confirm Password </label>
-                        <input type="password" class="input" placeholder="Enter Your Confirm Password" name="conpassword" value="<?= $raw['conpassword'] ?>" id="ConPassword"required>
-                    </div>
-                    <span id="conpass_err" class="text-danger"></span>
-                    <br>
+                <!--CONFIRM PASSWORD-->
 
-                    <!--GENDER-->
+                <div class="input_field">
+                    <label> Confirm Password </label>
+                    <input type="password" class="input" placeholder="Enter Your Confirm Password" name="conpassword"
+                        value="<?= $raw['conpassword'] ?>" id="ConPassword" required>
+                </div>
+                <span id="conpass_err" class="text-danger"></span>
+                <br>
 
-                    <label>Gender</label>
-                    <input type="radio" class="input" value="1" name="gender" <?php if ($raw['gender'] == "male") {
-                                                                                    echo "checked";
-                                                                                } ?>>Male
-                    <input type="radio" class="input" value="0" name="gender" <?php if ($raw['gender'] == "female") {
-                                                                                    echo "checked";
-                                                                                } ?>>Female
-                    <br>
-                    <br>
+                <!--GENDER-->
 
-                    <!--ADDRESS-->
-                    <div class="input_field">
-                        <label> Address</label>
-                        <textarea rows="2" cols="20" placeholder="Enter Your Address" class="input" name="address" id="Address" required>
+                <label>Gender</label>
+                <input type="radio" class="input" value="1" name="gender" <?php if ($raw['gender'] == "male") { echo "checked";} ?>>Male
+                <input type="radio" class="input" value="0" name="gender" <?php if ($raw['gender'] == "female") { echo "checked";} ?>>Female
+                <br>
+                <br>
 
-          <?php echo $raw['address']; ?>
+                <!--ADDRESS-->
+                <div class="input_field">
+                    <label> Address</label>
+                    <textarea rows="2" cols="20" placeholder="Enter Your Address" class="input" name="address"id="Address" required><?php echo $raw['address']; ?>
 
           </textarea>
-                    </div>
-                    <span id="add_err" class="text-danger"></span>
-
-
-
-                    <!--Choose Designation-->
-                    <div class="input_field">
-                        Designation:
-                        <select name="designation" class="designation" name="designation" id="designation" required>
-                            <option value="">Select Your Designation</option>
-                            <option value="Project Manager" <?php if ($raw['designation'] == "Project Manager") {
-                                                                echo "selected=selected";
-                                                            } else {
-                                                                echo "";
-                                                            } ?>>
-                                Project Manager </option>
-                            <option value="Jr Developer" <?php if ($raw['designation'] == "Jr Developer") {
-                                                                echo "selected=selected";
-                                                            } else {
-                                                                echo "";
-                                                            } ?>>
-                                Jr Developer</option>
-                            <option value="Sr Developer" <?php if ($raw['designation'] == "Sr Developer") {
-                                                                echo "selected=selected";
-                                                            } else {
-                                                                echo "";
-                                                            } ?>>
-                                Sr Developer</option>
-                            <option value="Human Resources" <?php if ($raw['designation'] == "Human Resources") {
-                                                                echo "selected=selected";
-                                                            } else {
-                                                                echo "";
-                                                            } ?>>
-                                Human Resources</option>
-                        </select>
-                    </div>
-                    <span id="designation_err" class="text-danger"></span>
-                    <br>
-
-                    <!--FILE UPLOAD-->
-                    <div class="input_field">
-                        <label> File</label>
-                        <input type="file" class="input" name="file" value="<?= $raw['file'] ?>">
-                    </div>
-
-                    <div class="input_field">
-                        <input type="submit" class="btn" value="Update Details" name="submit">
-                    </div>
-
                 </div>
+                <span id="add_err" class="text-danger"></span>
+
+
+
+                <!--Choose Designation-->
+                <div class="input_field">
+                    Designation:
+                    <select name="designation" class="designation" name="designation" id="designation" required>
+                        <option value="">Select Your Designation</option>
+                        <option value="Project Manager" <?php if ($raw['designation'] == "Project Manager") { echo "selected=selected";} else { echo "";} ?>> Project Manager </option>
+
+                        <option value="Jr Developer" <?php if ($raw['designation'] == "Jr Developer") {   echo "selected=selected";} else { echo ""; } ?>> Jr Developer</option>
+
+                        <option value="Sr Developer" <?php if ($raw['designation'] == "Sr Developer") { echo "selected=selected";} else {echo "";} ?>>Sr Developer</option>
+                        
+                        <option value="Human Resources" <?php if ($raw['designation'] == "Human Resources") {echo "selected=selected";} else {echo "";} ?>>Human Resources</option>
+                    </select>
+                </div>
+                <span id="designation_err" class="text-danger"></span>
+                <br>
+
+                <!--FILE UPLOAD-->
+                <div class="input_field">
+                    <label> File</label>
+                    <input type="file" class="input" name="file" value="<?= $raw['file'] ?>">
+                </div>
+
+                <div class="input_field">
+                    <input type="submit" class="btn" value="Update Details" name="submit">
+                </div>
+
             </div>
-        </form>
+        </div>
+    </form>
     <?php } ?>
 </body>
 

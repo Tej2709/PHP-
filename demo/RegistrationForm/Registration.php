@@ -1,12 +1,6 @@
-<?php 
-    // session_start();
-    // if(isset($_SESSION['email'])){
-    //     header("location:login.php ");
-    // }
-?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet" type="text/css" />
@@ -151,7 +145,7 @@
 
                 <div class="form-group">
                     <label>Gender</label>
-                    <input type="radio" name="gender" value="male" class="input">Male
+                    <input type="radio" name="gender" value="male" class="input" checked>Male
                     <input type="radio" name="gender" value="female" class="input">Female
                 </div>
                 <br> <br>

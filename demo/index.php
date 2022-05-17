@@ -4,9 +4,6 @@ if(!$_SESSION ['email'])
 {
   header('location:login.php');
 }
-
-
-
 ?>
 
 <html>
@@ -69,6 +66,12 @@ if(!$_SESSION ['email'])
     <td><a href='update.php?id=<?=$result['id']?>'>Update </a></td>
     <td><a href="#" onclick="deletere(<?php echo $result['id'];?>)">Delete </a></td>
 </tr>
+
+<?php
+
+
+?>
+
 <?php
       }
     }

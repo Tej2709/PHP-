@@ -177,7 +177,7 @@
 					}
 		
 					$("#pass_err").empty();
-					if($(this).val()=="" || $(this).val()==null)
+					if($(this).val()=='')
 					{
 						$("#pass_err").html("(*) Password required..!!");
 						conpasswordflag=false;
@@ -232,17 +232,3 @@
 				echo("Error to submit form..!!");
 				
 			}
-
-
-			// function onChange(){
-			// 	const password =document.querySelector('input[name="password"]');
-			// 	const conpasswordflag = document.querySelector('input[name="conpassword"]');
-			// 	if(confirm.value == password.value)
-			// 	{
-			// 		confirm.setCustomValidity('');
-			// 	}
-			// 	else 
-			// 	{
-			// 		confirm.setCustomValidity('password does not match');
-			// 	}
-			// }

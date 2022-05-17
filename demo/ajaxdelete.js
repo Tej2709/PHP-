@@ -1,3 +1,12 @@
+
+ window.confirm("Are you sure to delete this record");
+if (window.confirm=="yes")
+{
+
+
+
+
+
 function deletere(str) {
     if (str.length == 0) {
       document.getElementById("txtHint").innerHTML = "";
@@ -21,6 +30,9 @@ function deletere(str) {
       xmlhttp.open("GET", "delete.php?id=" + str, true);
       xmlhttp.send();
     }
-    window.confirm("Are you sure to delete this record");
   
   }
+}
+else{
+  window.write("Record not deleted");
+}

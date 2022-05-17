@@ -73,9 +73,7 @@ $result = mysqli_fetch_assoc($data);
                 header('location:index.php');
             }
         }
-        // echo "<pre>"; 
-        // print_r($raw);
-        // echo "</pre>";
+       
     ?>
         <form method="POST" enctype="multipart/form-data">
             <input type="hidden" name="sid" value="<?= $raw['id'] ?>">
@@ -84,6 +82,7 @@ $result = mysqli_fetch_assoc($data);
                     Update Form
                 </div>
                 <div class="form">
+
                     <!--FIRST NAME-->
                     <div class="input_field">
                         <label> First Name </label>
@@ -94,11 +93,13 @@ $result = mysqli_fetch_assoc($data);
 
 
                     <!--LAST NAME-->
+
                     <div class="input_field">
                         <label> Last Name </label>
                         <input type="text" class="input" placeholder="Enter Your Last Name" name="lname" value="<?= $raw['lname'] ?>" id="Lname"required>
                     </div>
                     <span id="lastname" class="text-danger"></span>
+
                     <!--EMAIL-->
 
                     <div class="input_field">
@@ -106,6 +107,7 @@ $result = mysqli_fetch_assoc($data);
                         <input type="email" class="input" placeholder="Enter Your Email Here." name="email" value="<?= $raw['email'] ?>" id="Email"required>
                     </div>
                     <span id="email_err" class="text-danger"></span>
+                    
                     <!--PASSWORD-->
 
                     <div class="input_field">
@@ -126,10 +128,10 @@ $result = mysqli_fetch_assoc($data);
                     <!--GENDER-->
 
                     <label>Gender</label>
-                    <input type="radio" class="input" value="1" name="gender" <?php if ($raw['gender'] == "male") {
+                    <input type="radio" class="input" value="male" name="gender" <?php if ($raw['gender'] == "male") {
                                                                                     echo "checked";
                                                                                 } ?>>Male
-                    <input type="radio" class="input" value="0" name="gender" <?php if ($raw['gender'] == "female") {
+                    <input type="radio" class="input" value="female" name="gender" <?php if ($raw['gender'] == "female") {
                                                                                     echo "checked";
                                                                                 } ?>>Female
                     <br>
@@ -138,10 +140,9 @@ $result = mysqli_fetch_assoc($data);
                     <!--ADDRESS-->
                     <div class="input_field">
                         <label> Address</label>
-                        <textarea rows="2" cols="20" placeholder="Enter Your Address" class="input" name="address" id="Address" required>
-
-          <?php echo $raw['address']; ?>
-
+                        <textarea rows="1" cols="10" placeholder="Enter Your Address" class="input" name="address"
+                            id="Address"value="<?php echo $raw['address']; ?>" required>
+          
           </textarea>
                     </div>
                     <span id="add_err" class="text-danger"></span>
