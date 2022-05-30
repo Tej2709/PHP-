@@ -141,7 +141,7 @@ $result = mysqli_fetch_assoc($data);
                     <div class="input_field">
                         <label> Address</label>
                         <textarea rows="1" cols="10" placeholder="Enter Your Address" class="input" name="address"
-                            id="Address"value="<?php echo $raw['address']; ?>" required>
+                            id="Address" required><?php echo $raw['address']; ?>
           
           </textarea>
                     </div>
@@ -154,11 +154,7 @@ $result = mysqli_fetch_assoc($data);
                         Designation:
                         <select name="designation" class="designation" name="designation" id="designation" required>
                             <option value="">Select Your Designation</option>
-                            <option value="Project Manager" <?php if ($raw['designation'] == "Project Manager") {
-                                                                echo "selected=selected";
-                                                            } else {
-                                                                echo "";
-                                                            } ?>>
+                            <option value="Project Manager" <?php if ($raw['designation'] == "Project Manager") {  echo "selected=selected";} else { echo ""; } ?>>
                                 Project Manager </option>
                             <option value="Jr Developer" <?php if ($raw['designation'] == "Jr Developer") {
                                                                 echo "selected=selected";

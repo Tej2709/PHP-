@@ -8,7 +8,7 @@ if(!$_SESSION ['email'])
 
 <html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="./ajaxdelete.js" type="text/javascript"></script>
+<script src="ajaxdelete.js" type="text/javascript"></script>
 <script>
   window.history.forward();
 </script>
@@ -62,9 +62,11 @@ if(!$_SESSION ['email'])
     <td><?=$result['address']?></td>
     <td><?=$result['designation']?></td>
     <td><?=$result['gender']?></td>
-    <td><?=$result['file']?></td>
+    <td><a target="_blank" href="uploads/<?php echo $result['file'];?>"><?=$result['file']?></a></td>
+    
+
     <td><a href='update.php?id=<?=$result['id']?>'>Update </a></td>
-    <td><a href="#" onclick="deletere(<?php echo $result['id'];?>)">Delete </a></td>
+    <td><a href="" onclick="deletere(<?php echo $result['id'];?>)">Delete </a></td>
 </tr>
 
 <?php
