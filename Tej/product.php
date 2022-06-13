@@ -81,13 +81,6 @@ include 'addproduct_process.php';
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Created By:</strong>
-                        <span class="text-info" id="create_err"> <?php echo $email; ?> </span>
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
                         <strong>Active:</strong>
                         <select name="active" id="active" class="form-control">
                             <option value="">Select</option>

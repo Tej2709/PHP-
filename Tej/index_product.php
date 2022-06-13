@@ -145,7 +145,7 @@ session_start();
                 <th width="8%">Created By</th>
                 <?php
                     if ($utype == "1" || $utype =="0") { ?>
-                        <th width="8%">Action</th>
+                        <th width="8%">Active</th>
                     <?php } ?>
                 <?php 
                     if($utype == "1" || $utype =="0"){?>
