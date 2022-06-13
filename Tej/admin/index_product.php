@@ -1,4 +1,14 @@
+<?php
+session_start();
+@$email=$_SESSION['email1'];
+ @$utype=$_SESSION['utype1'];
+//  echo "$utype";
+ if(!isset($email))
+ {
+     Header('Location:admin.php');
+ }
 
+?>
 <html>
 
 <head>
@@ -6,7 +16,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css"
         rel="stylesheet">
     <script>
-    window.history.forward();
+    // window.history.forward();
     </script>
     <script>
     function deletere(str) {
@@ -61,7 +71,7 @@
             var value = $(this).val()
             console.log(value); 
             $.ajax({
-                url: "filterindex.php",
+                url: "filter.php",
                 type: "POST",
                 data: 'request=' + value,
                 beforeSend: function() {
@@ -88,7 +98,9 @@
 <body>
 
     <br>
-    
+    <div class="pull-right">
+        <h3><?php echo $email; ?><a href="logout.php">:Logout</a></h3>
+    </div>
     
     <div class="pull-left">
     <br><br>
@@ -109,11 +121,7 @@
                             </div>
 
     <?php
-    session_start();
     
-    @$email=$_SESSION['email1'];
-    @$utype=$_SESSION['utype1'];
-    //echo "$utype";
       
        $query = "SELECT * FROM product";
        $data = mysqli_query($conn, $query);
@@ -135,15 +143,23 @@
                 <th width="5%">Category Name</th>
                 <th width="5%">Image</th>
                 <th width="8%">Created By</th>
-                <th width="5%">Active</th>
-            
-               
-               
+                <?php
+                    if ($utype == "1" || $utype =="0") { ?>
+                        <th width="8%">Active</th>
+                    <?php } ?>
+                <?php 
+                    if($utype == "1" || $utype =="0"){?>
+                <th width="8%">Action</th>
                 <div class="pull-right">
-          
-                   
-                    <a class="btn btn-danger" href="./admin/admin.php">Login </a>
+                    <a class="btn btn-warning" href="product.php"> Add New Product</a>
+                    <a class="btn btn-success" href="index_category.php">Category List</a>
+                      <a class="btn btn-danger" href="index.php">Admins List</a>
 
+
+                </div>
+                <?php }?>
+                <div class="pull-right">
+                  
                 </div>
                 <br>
             </tr>
@@ -151,8 +167,7 @@
 
             <?php
                 include 'config.php';
-                $query = "SELECT p.id, p.pname, c.cname,a.email,p.active,p.image FROM product p INNER JOIN category c ON p.catid = c.id INNER JOIN newadmin a ON p.createby = a.email where c.active= 'yes' and p.active='yes';
-                ";   
+                $query = "SELECT * FROM product WHERE active='yes'";
                 $result = mysqli_query($conn, $query);
                 if(mysqli_num_rows($result)>0){
            while($result = mysqli_fetch_assoc($data))
@@ -178,12 +193,18 @@
                 ?>
 
                 </td>
-                <td><img src="images/<?php echo $result['image'];?>" width="180" height="150"></td>
+                <td><img src="../images/<?php echo $result['image'];?>" width="180" height="150"></td>
                 <td><?=$result['createby']?></th>
                 <td><?=$result['active']?></td>
 
-               
-               
+                <?php
+                            if ($utype == "1" || $utype =="0") { ?>
+                                <td><a href='update_product.php?id=<?=$result['id']?>' class="btn btn-primary">update</a>
+                                <button class="btn btn-danger" onclick="deletere(<?=$result['id']?>);">Delete</button>
+                                </td>
+                            <?php } ?>
+
+            
             </tr>
             <?php
            }
