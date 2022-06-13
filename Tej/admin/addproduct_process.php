@@ -9,7 +9,7 @@ if (isset($_POST['submit']) && count($_POST) > 0) {
     $active = $_POST['active'];
   
 
-    $target_dir = "images/";
+    $target_dir = "../images/";
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
     $uploadOk = 1;
     $filetype = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));

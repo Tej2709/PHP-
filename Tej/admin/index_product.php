@@ -1,7 +1,7 @@
 <?php
 session_start();
-@$email=$_SESSION['email1'];
- @$utype=$_SESSION['utype1'];
+$email=$_SESSION['email1'];
+ $utype=$_SESSION['utype1'];
 //  echo "$utype";
  if(!isset($email))
  {

@@ -6,7 +6,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css"
         rel="stylesheet">
     <script>
-    window.history.forward();
+   // window.history.forward();
     </script>
     <script>
     function deletere(str) {
@@ -178,7 +178,7 @@
                 ?>
 
                 </td>
-                <td><img src="images/<?php echo $result['image'];?>" width="180" height="150"></td>
+                <td><img src="./images/<?php echo $result['image'];?>" width="180" height="150"></td>
                 <td><?=$result['createby']?></th>
                 <td><?=$result['active']?></td>
 
