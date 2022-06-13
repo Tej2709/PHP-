@@ -25,7 +25,7 @@ $result = mysqli_fetch_assoc($data);
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
         integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
-    <script src="./javascript/admin_register.JS"></script>
+    <script src="../javascript/admin_register.JS"></script>
     <style>
     body {
         background-color: black;
@@ -97,7 +97,7 @@ $result = mysqli_fetch_assoc($data);
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Email:</strong>
-                        <input type="text" id="email" name="email" class="form-control" placeholder="Enter your Email" value="<?=$raw['email']?>"
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter your Email" value="<?=$raw['email']?>"
                             required>
                         <span class="text-danger" id="email_err"></span>
                     </div>

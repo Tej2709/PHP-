@@ -30,7 +30,7 @@ include 'addproduct_process.php';
         color: white;
     }
     </style>
-    <script src="./javascript//product_validation.js" type="text/javascript"></script>
+    <script src="../javascript/product_validation.js" type="text/javascript"></script>
 </head>
 
 <body>

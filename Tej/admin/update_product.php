@@ -78,7 +78,7 @@ if(isset($_REQUEST['submit'])){
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css"
         rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
-        <script src="./javascript/product_validation.js" type="text/javascript"> </script>
+        <script src="../javascript/product_validation.js" type="text/javascript"> </script>
 </head>
 <style>
 body {

@@ -92,7 +92,7 @@ function deletere(str) {
     <?php
       require ("config.php");
       error_reporting(0);
-       $query = "SELECT * FROM newadmin ";
+       $query = "SELECT * FROM newadmin WHERE usertype='0'";
        $data = mysqli_query($conn, $query);
        $total = mysqli_num_rows($data);
        

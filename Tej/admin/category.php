@@ -23,7 +23,7 @@ if(!isset($email))
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
         integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
-        <script src="./javascript/validation_category.js" type="text/javascript"></script>
+        <script src="../javascript/validation_category.js" type="text/javascript"></script>
     <style>
     body {
         background-color: black;

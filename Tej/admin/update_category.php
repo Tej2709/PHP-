@@ -36,7 +36,7 @@ $result = mysqli_fetch_assoc($data);
     }
     
 </style>
-<script src="./javascript/validation_category.js" type="text/javascript"></script>
+<script src="../javascript/validation_category.js" type="text/javascript"></script>
 </head>
 
 <body>
