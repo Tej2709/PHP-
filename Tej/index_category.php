@@ -71,7 +71,7 @@ function deletere(str) {
 <body>
     
     <br>
-    <h3>Logout : <a href="logout.php"><?php echo $email; ?></a></h3>
+    <h3><?php echo $email; ?> <a href="logout.php">:Logout</a></h3>
 
 
     <div class="pull-right">

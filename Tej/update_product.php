@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 session_start();
 @$email=$_SESSION['email1'];
  @$utype=$_SESSION['utype1'];
@@ -94,7 +95,7 @@ body {
                 <div class="pull-left">
                     <br>
                     <h2>Edit Product</h2>
-                    <h2>Logout : <a class="text-success" href="logout.php"><?php echo $email;?></a></h2>
+                    <h2><?php echo $email;?><a class="text-success" href="logout.php"> :Logout</a></h2>
                 </div>
                 <br>
                 <div class="pull-right">
@@ -138,13 +139,7 @@ body {
                         <span class="text-danger" id="cat_error"></span>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <br>
-                        <strong>Created By UserId:</strong>
-                        <span class="text-success" name="createby"><?php echo $email;?></span>
-                    </div>
-                </div>
+             
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <br>

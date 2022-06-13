@@ -70,7 +70,7 @@ function deletere(str) {
 </head>
 <body>
     <br>
-    <h3>Logout : <a href="logout.php"><?php echo $email; ?></a></h3>
+    <h3><?php echo $email; ?><a href="logout.php">:Logout</a></h3>
     <?php 
      if($utype == "1" || $utype =="0"){?>
     <br>
