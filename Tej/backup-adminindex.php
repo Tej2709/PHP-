@@ -1,19 +1,15 @@
 <?php
 session_start();
-@$email=$_SESSION['email1'];
- @$utype=$_SESSION['utype1'];
-//  echo "$utype";
- if(!isset($email))
- {
-     Header('Location:admin.php');
- }
+if(!isset($_SESSION['email'])){
+    header("Location:admin.php");
+}
 ?>
 <html>
     <head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
 <script>
-window.history.forward();
+//window.history.forward();
 </script>
 <script>
 function deletere(str) {
@@ -52,7 +48,7 @@ function deletere(str) {
 
         };
 
-        xmlhttp.open("GET", "delete_category.php?id=" + str, true);
+        xmlhttp.open("GET", "delete.php?id=" + str, true);
 
         xmlhttp.send();
 
@@ -66,25 +62,25 @@ function deletere(str) {
         color: white;
     }
     
-    </style>
+</style>
 </head>
 <body>
-    
     <br>
-    <h3>Logout : <a href="logout.php"><?php echo $email; ?></a></h3>
-
-
+    <h3>Logout : <a href="logout.php"><?=$_SESSION['email']?></a></h3>
+    <?php 
+     if($_SESSION['email']=="testuser@kcsitglobal.com"){?>
+    <br>
     <div class="pull-right">
-        <a class="btn btn-warning" href="category.php"> Add New Category</a>
-        <a class="btn btn-success" href="index_product.php" > Product </a> 
-         <a class="btn btn-info" href="index_product.php"> Back</a> 
-
-            </div>
+        <a class="btn btn-success" href="admin_register.php"> Add New Admin</a>
+        <a class="btn btn-primary" href="index_category.php"> Category</a>
+        <a class="btn btn-info" href="index_product.php"> Product</a>
+    </div>
+    <?php }?>
 
     <?php
       require ("config.php");
       error_reporting(0);
-       $query = "SELECT * FROM category ";
+       $query = "SELECT * FROM newadmin ";
        $data = mysqli_query($conn, $query);
        $total = mysqli_num_rows($data);
        
@@ -96,33 +92,42 @@ function deletere(str) {
      {
            ?>
     <center>
-        <h2>Category Records</h2>
+        <h2>Display Records</h2>
         <p><span id="txtHint"></span></p>
     </center>
     <center>
-        <table border="4" cellspacing="4" width="100%" class="table table-bordered" ">
+        <table border="2" cellspacing="5" width="100%" class="table table-bordered">
             <tr>
-                <th width="5%">Id</th>
-                <th width="15%">Name</th>
-                <th width="15%">Active</th>
+                <th width="10%">Id</th>
+                <th width="20%">Name</th>
+                <th width="20%">Email</th>
+                <th width="10">Gender</th>
+                <th width="15">Hobbies</th>
                 <?php 
-                    if($utype == "1" || $utype =="0"){?>
+                    if($_SESSION['email']=="testuser@kcsitglobal.com"){?>
                 <th width="10%">Action</th>
+            
                 <?php }?>
             </tr>
     </center>
     <?php
+             //$result = mysqli_fetch_assoc($data);
+             //echo "<pre>";
+            // print_r($result);
+            // echo "</pre>";
            while($result = mysqli_fetch_assoc($data))
            {
          ?>
     <tr>
         <td><?=$result['id']?></td>
-        <td><?=$result['cname']?></td>
-        <td><?=$result['active']?></td>
+        <td><?=$result['name']?></td>
+        <td><?=$result['email']?></td>
+        <td><?=$result['gender']?></td>
+        <td><?=$result['hobbies']?></td>
 
         <?php
-                if($utype == "1" || $utype =="0"){?>
-        <td><a href='update_category.php?id=<?=$result['id']?>' class="btn btn-primary">Edit</a>
+                if($_SESSION['email']=="testuser@kcsitglobal.com"){?>
+        <td><a href='update.php?id=<?=$result['id']?>' class="btn btn-primary">Edit</a>
             <button class="btn btn-danger" onclick="deletere(<?=$result['id']?>);">Delete</button>
 
             <?php }?>
@@ -137,7 +142,14 @@ function deletere(str) {
          }
      
          ?>
+         <div class="pull-right">
+         <a class="btn btn-warning" href="index_product.php"> Back</a>
+         </div>
+         <br>
     </table>
+<br>
+
+  
 </body>
 
 </html>

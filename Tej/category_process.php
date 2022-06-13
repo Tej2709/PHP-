@@ -1,7 +1,7 @@
 <?php
 include'config.php';
  session_start();
- if(!isset($_SESSION['email']))
+ if(!$utype == "1" || !$utype =="0")
  {
      Header('Location:admin.php');
  }

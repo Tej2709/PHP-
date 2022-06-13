@@ -1,10 +1,14 @@
 <?php 
 include 'addproduct_process.php';
-if(!isset($_SESSION['email']))
+
+
+ @$email=$_SESSION['email1'];
+ @$utype=$_SESSION['utype1'];
+//  echo "$utype";
+ if(!isset($email))
  {
      Header('Location:admin.php');
  }
-
 
 ?>
 
@@ -78,7 +82,7 @@ if(!isset($_SESSION['email']))
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Created By:</strong>
-                        <span class="text-info" id="create_err"> <?php echo $_SESSION['email'] ?> </span>
+                        <span class="text-info" id="create_err"> <?php echo $email; ?> </span>
                     </div>
                 </div>
 

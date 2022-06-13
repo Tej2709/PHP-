@@ -1,9 +1,13 @@
 <?php
 session_start();
-if(!isset($_SESSION['email'])){
-    header("Location:admin.php");
-}
 
+@$email=$_SESSION['email1'];
+ @$utype=$_SESSION['utype1'];
+//  echo "$utype";
+ if(!isset($email))
+ {
+     Header('Location:admin.php');
+ }
 error_reporting(0);
 $id = $_GET['id'];
 //echo $id; 
@@ -76,7 +80,7 @@ $result = mysqli_fetch_assoc($data);
     <div class="container">
         <div class="pull-left">
             
-        <h3>Logout : <a href="logout.php"><?=$_SESSION['email']?></a></h3>
+        <h3>Logout : <a href="logout.php"><?php echo $email; ?></a></h3>
         <form action="" method="POST">
         <input type="hidden" name="sid" value="<?= $raw['id'] ?>">
             <div class="row">

@@ -1,8 +1,13 @@
 <?php
 session_start();
-if(!isset($_SESSION['email'])){
-    header("Location:admin.php");
-}
+@$email=$_SESSION['email1'];
+ @$utype=$_SESSION['utype1'];
+//  echo "$utype";
+ if(!isset($email))
+ {
+     Header('Location:admin.php');
+ }
+
 ?>
 <html>
 
@@ -94,7 +99,7 @@ if(!isset($_SESSION['email'])){
 
     <br>
     <div class="pull-right">
-        <h3>Logout : <a href="logout.php"><?=$_SESSION['email']?></a></h3>
+        <h3>Logout : <a href="logout.php"><?php echo $email; ?></a></h3>
     </div>
     
     <div class="pull-left">
@@ -138,19 +143,23 @@ if(!isset($_SESSION['email'])){
                 <th width="5%">Category Name</th>
                 <th width="5%">Image</th>
                 <th width="8%">Created By</th>
-                <th width="5%">Active</th>
+                <?php
+                    if ($utype == "1" || $utype =="0") { ?>
+                        <th width="8%">Action</th>
+                    <?php } ?>
                 <?php 
-                    if($_SESSION['email']=="testuser@kcsitglobal.com"){?>
+                    if($utype == "1" || $utype =="0"){?>
                 <th width="8%">Action</th>
                 <div class="pull-right">
                     <a class="btn btn-warning" href="product.php"> Add New Product</a>
                     <a class="btn btn-success" href="index_category.php">Category List</a>
+                      <a class="btn btn-danger" href="adminindex.php">Admins List</a>
 
 
                 </div>
                 <?php }?>
                 <div class="pull-right">
-                    <a class="btn btn-danger" href="index.php">Admins List</a>
+                  
                 </div>
                 <br>
             </tr>
@@ -189,11 +198,13 @@ if(!isset($_SESSION['email'])){
                 <td><?=$result['active']?></td>
 
                 <?php
-                if($_SESSION['email']=="testuser@kcsitglobal.com"){?>
-                <td><a href='update_product.php?id=<?=$result['id']?>' class="btn btn-primary">update</a>
-                    <button class="btn btn-danger" onclick="deletere(<?=$result['id']?>);">Delete</button>
+                            if ($utype == "1" || $utype =="0") { ?>
+                                <td><a href='update_product.php?id=<?=$result['id']?>' class="btn btn-primary">update</a>
+                                <button class="btn btn-danger" onclick="deletere(<?=$result['id']?>);">Delete</button>
+                                </td>
+                            <?php } ?>
 
-                    <?php }?>
+            
             </tr>
             <?php
            }

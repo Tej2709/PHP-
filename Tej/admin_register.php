@@ -1,15 +1,19 @@
 <?php
 session_start();
-if(!isset($_SESSION['email'])){
-    header("Location:admin.php");
-}
+@$email=$_SESSION['email1'];
+ @$utype=$_SESSION['utype1'];
+//  echo "$utype";
+ if(!isset($email))
+ {
+     Header('Location:admin.php');
+ }
 include ('./Phpvalidation/admin_registration_php_validation.php');
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title></title>
+    <title>Admin Register</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css"
         rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
@@ -28,12 +32,15 @@ include ('./Phpvalidation/admin_registration_php_validation.php');
 </head>
 
 <body>
+    <center>
+    <h2>Admin Register</h2>
+</center>
     <div class="container">
         <br>
         <div class="pull-right">
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" id="back" name="back" class="btn btn-primary"
-                    onclick="window.location.href='index.php'"$>Back</button>
+                    onclick="window.location.href='adminindex.php'">Back</button>
             </div>
         </div>
         <form action="admin_register_process.php" method="POST">
@@ -42,7 +49,7 @@ include ('./Phpvalidation/admin_registration_php_validation.php');
                     <div class="form-group">
                         <strong>Name:</strong>
                         <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name"
-                             autofocus>
+                             required autofocus>
                         <span class="text-danger" id="name_err"></span>
                     </div>
                 </div>
@@ -50,7 +57,7 @@ include ('./Phpvalidation/admin_registration_php_validation.php');
                     <div class="form-group">
                         <strong>Email:</strong>
                         <input type="text" id="email" name="email" class="form-control" placeholder="Enter your Email"
-                            >
+                           required >
                         <span class="text-danger" id="email_err"></span>
                     </div>
                 </div>
@@ -58,7 +65,7 @@ include ('./Phpvalidation/admin_registration_php_validation.php');
                     <div class="form-group">
                         <strong>Password:</strong>
                         <input type="password" id="password" name="password" placeholder="Enter Password"
-                            class="form-control" >
+                            class="form-control" required >
                         <span class="text-danger" id="pass_err"></span>
                     </div>
                 </div>

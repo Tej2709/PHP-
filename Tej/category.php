@@ -1,3 +1,13 @@
+<?php
+session_start();
+@$email=$_SESSION['email1'];
+@$utype=$_SESSION['utype1'];
+//  echo "$utype";
+if(!isset($email))
+{
+    Header('Location:admin.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

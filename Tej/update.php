@@ -1,7 +1,7 @@
 <?php
 session_start(); 
 
-if(!$_SESSION['email']){
+if(!$_SESSION['email']=="testuser@kcsitglobal.com"){
     header("admin.php");
 }
 error_reporting(0);
@@ -64,7 +64,7 @@ $result = mysqli_fetch_assoc($data);
                 $update = mysqli_query($conn, $query);
                 if ($update) {
                     echo "Data updated;";
-                    header('location:index.php');
+                    header('location:adminindex.php');
                 } else {
                     echo "Data Failed";
                 }

@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 include 'config.php';
 if (isset($_POST['request'])){
     $request = $_POST['request'];
@@ -26,10 +26,7 @@ if (isset($_POST['request'])){
             <th>Image</th>
             <th>Created By User ID</th>
             <th>Active</th>
-            <?php 
-                    if($utype == "1" || $utype =="0"){?>
-            <th width="280px">Action</th>
-            <?php }?>
+           
         </tr>
         <?php
         }
@@ -62,12 +59,7 @@ if (isset($_POST['request'])){
             <td><img src="images/<?php echo $row['image'];?> " width="140" height="100"></td>
             <td><?= $row['createby']?></td>
             <td><?= $row['active']?></td>
-            <?php
-                    if($utype == "1" || $utype =="0"){?>
-            <td><a class="btn btn-info" href='editproduct.php?id=<?=$row['id']?>'>Edit</a>
-                <a class="btn btn-danger" onclick="deleterow(<?=$row['id']?>);">Delete</a>
-            </td>
-            <?php }?>
+          
         </tr>
         <?php
             }

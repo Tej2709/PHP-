@@ -1,155 +1,202 @@
-<?php
-session_start();
-if(!isset($_SESSION['email'])){
-    header("Location:admin.php");
-}
-?>
+
 <html>
-    <head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
-<script>
-//window.history.forward();
-</script>
-<script>
-function deletere(str) {
 
-    if (confirm('Are you sure want to delete?')) {
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css"
+        rel="stylesheet">
+    <script>
+    window.history.forward();
+    </script>
+    <script>
+    function deletere(str) {
 
-        if (str.length == 0) {
+        if (confirm('Are you sure want to delete?')) {
 
-            document.getElementById("txtHint").innerHTML = "";
+            if (str.length == 0) {
 
-            return;
+                document.getElementById("txtHint").innerHTML = "";
 
-        } else {
+                return;
 
-            var xmlhttp = new XMLHttpRequest();
+            } else {
 
-            xmlhttp.onreadystatechange = function() {
+                var xmlhttp = new XMLHttpRequest();
 
-                if (this.readyState == 4 && this.status == 200) {
+                xmlhttp.onreadystatechange = function() {
 
-                    if (this.responseText == 1) {
+                    if (this.readyState == 4 && this.status == 200) {
 
-                        document.getElementById("txtHint").innerHTML = "Record deleted successfully";
+                        if (this.responseText == 1) {
 
-                        setInterval('window.location.reload()', 2000);
+                            document.getElementById("txtHint").innerHTML = "Record deleted successfully";
 
-                    } else {
+                            setInterval('window.location.reload()', 2000);
 
-                        document.getElementById("txtHint").innerHTML = this.responseText;
+                        } else {
+
+                            document.getElementById("txtHint").innerHTML = this.responseText;
+
+                        }
 
                     }
 
                 }
 
-            }
+            };
 
-        };
+            xmlhttp.open("GET", "delete_product.php?id=" + str, true);
 
-        xmlhttp.open("GET", "delete.php?id=" + str, true);
+            xmlhttp.send();
 
-        xmlhttp.send();
+        }
+
 
     }
+    </script>
+      <script type="text/javascript">
+    $(document).ready(function() {
 
-}
-</script>
-<style>
+        $("#catid").change( function() {
+            var value = $(this).val()
+            console.log(value); 
+            $.ajax({
+                url: "filterindex.php",
+                type: "POST",
+                data: 'request=' + value,
+                beforeSend: function() {
+                    $(".table").html("<span>working....</span>");
+                },
+                success: function(data) {
+                    $(".table").html(data);
+                 
+                    $("#catid option[value="+value+"]").attr("selected","selected");
+                   
+                }
+            })
+        });
+    });
+    </script>
+    <style>
     body {
         background-color: black;
         color: white;
     }
-    
-</style>
+    </style>
 </head>
+
 <body>
+
     <br>
-    <h3>Logout : <a href="logout.php"><?=$_SESSION['email']?></a></h3>
-    <?php 
-     if($_SESSION['email']=="testuser@kcsitglobal.com"){?>
-    <br>
-    <div class="pull-right">
-        <a class="btn btn-success" href="admin_register.php"> Add New Admin</a>
-        <a class="btn btn-primary" href="index_category.php"> Category</a>
-        <a class="btn btn-info" href="index_product.php"> Product</a>
-    </div>
-    <?php }?>
+    
+    
+    <div class="pull-left">
+    <br><br>
+    <select name="catid" id="catid" class=" catid form-control">
+                        <option value="">All</option>
+                        <?php 
+                                include 'config.php';
+                                $sql1 = "SELECT * FROM category";
+                                $result1 = mysqli_query($conn, $sql1);
+                                if (mysqli_num_rows($result1) > 0) {
+                                    while($row1 = mysqli_fetch_assoc($result1)) {?>
+                        <option value="<?php echo $row1['id']?>"><?php echo $row1['cname']?></option>
+                        <?php }
+                                } 
+                            ?>
+                    </select>
+
+                            </div>
 
     <?php
-      require ("config.php");
-      error_reporting(0);
-       $query = "SELECT * FROM newadmin ";
+    session_start();
+    
+    @$email=$_SESSION['email1'];
+    @$utype=$_SESSION['utype1'];
+    //echo "$utype";
+      
+       $query = "SELECT * FROM product";
        $data = mysqli_query($conn, $query);
        $total = mysqli_num_rows($data);
-       
-     
-       echo "<br>";
-       //echo $total;
+    
      
        if($total != 0)
      {
            ?>
     <center>
-        <h2>Display Records</h2>
+        <h2>Product Records</h2>
         <p><span id="txtHint"></span></p>
     </center>
     <center>
-        <table border="2" cellspacing="5" width="100%" class="table table-bordered">
+        <table border="4" cellspacing="4" width="50%" class="table table-bordered" id="table">
             <tr>
-                <th width="10%">Id</th>
-                <th width="20%">Name</th>
-                <th width="20%">Email</th>
-                <th width="10">Gender</th>
-                <th width="15">Hobbies</th>
-                <?php 
-                    if($_SESSION['email']=="testuser@kcsitglobal.com"){?>
-                <th width="10%">Action</th>
+                <th width="5%">Id</th>
+                <th width="8%"> Product Name</th>
+                <th width="5%">Category Name</th>
+                <th width="5%">Image</th>
+                <th width="8%">Created By</th>
+                <th width="5%">Active</th>
             
-                <?php }?>
+               
+               
+                <div class="pull-right">
+          
+                   
+                    <a class="btn btn-danger" href="admin.php">Login </a>
+
+                </div>
+                <br>
             </tr>
-    </center>
-    <?php
-             //$result = mysqli_fetch_assoc($data);
-             //echo "<pre>";
-            // print_r($result);
-            // echo "</pre>";
+            <br>
+
+            <?php
+                include 'config.php';
+                $query = "SELECT p.id, p.pname, c.cname,a.email,p.active,p.image FROM product p INNER JOIN category c ON p.catid = c.id INNER JOIN newadmin a ON p.createby = a.email where c.active= 'yes' and p.active='yes';
+                ";   
+                $result = mysqli_query($conn, $query);
+                if(mysqli_num_rows($result)>0){
            while($result = mysqli_fetch_assoc($data))
            {
-         ?>
-    <tr>
-        <td><?=$result['id']?></td>
-        <td><?=$result['name']?></td>
-        <td><?=$result['email']?></td>
-        <td><?=$result['gender']?></td>
-        <td><?=$result['hobbies']?></td>
+?>
+            <tr>
+                <td><?=$result['id']?></td>
+                <td><?=$result['pname']?></td>
+                <td>
 
-        <?php
-                if($_SESSION['email']=="testuser@kcsitglobal.com"){?>
-        <td><a href='update.php?id=<?=$result['id']?>' class="btn btn-primary">Edit</a>
-            <button class="btn btn-danger" onclick="deletere(<?=$result['id']?>);">Delete</button>
+                    <?php
+                     $catid = $result['catid'];
+                     $query1 = "SELECT cname FROM category where id = '$catid'";
+                     $data1 = mysqli_query($conn,$query1);
+                     if (mysqli_num_rows($data1) > 0)
+                     {
+                         while($raw1 = mysqli_fetch_assoc($data1))
+                         {
+                             echo $raw1['cname'];
+                         }
+                     }
 
-            <?php }?>
-    </tr>
-    <?php
+                ?>
+
+                </td>
+                <td><img src="images/<?php echo $result['image'];?>" width="180" height="150"></td>
+                <td><?=$result['createby']?></th>
+                <td><?=$result['active']?></td>
+
+               
+               
+            </tr>
+            <?php
            }
          }
-     
+      
          else
          {
            echo "No record found..";
          }
-     
+        }
+    
          ?>
-         <div class="pull-right">
-         <a class="btn btn-warning" href="index_product.php"> Back</a>
-         </div>
-         <br>
-    </table>
-<br>
-
-  
+        </table>
 </body>
 
 </html>

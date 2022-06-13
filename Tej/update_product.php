@@ -1,9 +1,13 @@
 <?php
-session_start(); 
+session_start();
+@$email=$_SESSION['email1'];
+ @$utype=$_SESSION['utype1'];
+//  echo "$utype";
+ if(!isset($email))
+ {
+     Header('Location:admin.php');
+ }
 
-if(!$_SESSION['email']){
-    header("Location:admin.php");
-}
 include 'config.php';
 $id= $_GET['id'];
 if(isset($_REQUEST['submit'])){
@@ -90,7 +94,7 @@ body {
                 <div class="pull-left">
                     <br>
                     <h2>Edit Product</h2>
-                    <h2>Logout : <a class="text-success" href="logout.php"><?=$_SESSION['email']?></a></h2>
+                    <h2>Logout : <a class="text-success" href="logout.php"><?php echo $email;?></a></h2>
                 </div>
                 <br>
                 <div class="pull-right">
@@ -138,7 +142,7 @@ body {
                     <div class="form-group">
                         <br>
                         <strong>Created By UserId:</strong>
-                        <span class="text-success"><?=$_SESSION['email']?></span>
+                        <span class="text-success" name="createby"><?php echo $email;?></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">

@@ -1,7 +1,10 @@
 <?php
 include'config.php';
  session_start();
- if(!isset($_SESSION['email']))
+ @$email=$_SESSION['email1'];
+ @$utype=$_SESSION['utype1'];
+//  echo "$utype";
+ if(!isset($email))
  {
      Header('Location:admin.php');
  }
@@ -12,21 +15,26 @@ include'config.php';
      $email = $_POST['email'];
      $password = $_POST['password'];
      $gender = $_POST['gender'];
-     $hobbies=implode(',',(array)$_POST['checkbox']);
+     @$hobbies=implode(',',(array)$_POST['checkbox']);
+     $utype=0;
  
  
  if($name != "" && $email != "" && $password != "" && $gender != "" && $hobbies != "")
  {
-     $query = "INSERT INTO `newadmin`( `name`, `email`, `password`, `gender`, `hobbies`) VALUES ('$name','$email','$password','$gender','$hobbies')";
+     $query = "INSERT INTO `newadmin`( `name`, `email`, `password`, `gender`, `hobbies`,`usertype`) VALUES ('$name','$email','$password','$gender','$hobbies','$utype')";
      if(mysqli_query($conn,$query))
      {
-         header("Location:index.php");
+         header("Location:adminindex.php");
      }
      else
      {
          echo "Sorry something went wrong. Please try again";
      }
 
+ }
+ if($hobbies == "")
+ {
+     echo "Select atleast one hobbies";
  }
  else 
  {
