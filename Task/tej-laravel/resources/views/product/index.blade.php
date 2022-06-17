@@ -92,10 +92,10 @@
                                         <td>'+(i+1)+'</td>\
                                         <td>'+products[i]['pname']+'</td>\
                                         <td>'+products[i]['catid']+'</td>\
-                                        <td> <img src="public/images/'+products[i]['image']+'"width="160" height="80"> </td>\
+                                        <td> <img src="public/images/'+products[i]['image']+'"width="100" height="80"> </td>\
                                         <td>'+products[i]['createby']+'</td>\
                                         <td>'+products[i]['active']+'</td>\
-                                        </tr>';
+                                        <td><form action="{{ route('product.destroy',$value->id) }}" method="POST"><a class="btn btn-primary" href="{{ route('product.edit',$value->id) }}">Edit</a> @csrf @method('DELETE') <button type="submit" class="btn btn-danger">Delete</button></form></td> </tr>';
                             }
                         }
                         else{

@@ -49,7 +49,7 @@
         <td>{{ $value->pname }}</td>
         <td>{{ $value->catid }}</td>
 
-        <td><img src=" {{ asset('public/images/' . $value->image)}}" width="160" height="80"></td>
+        <td><img src=" {{ asset('public/images/' . $value->image)}}" width="100" height="80"></td>
         <td>{{ $value->createby}}</td>
         <td>{{ $value->active}}</td>
     </tr>
@@ -80,7 +80,7 @@
                                         <td>'+(i+1)+'</td>\
                                         <td>'+products[i]['pname']+'</td>\
                                         <td>'+products[i]['catid']+'</td>\
-                                        <td> <img src="public/images/'+products[i]['image']+'"width="160" height="80"> </td>\
+                                        <td> <img src="public/images/'+products[i]['image']+'"width="100" height="80"> </td>\
                                         <td>'+products[i]['createby']+'</td>\
                                         <td>'+products[i]['active']+'</td>\
                                         </tr>';
