@@ -15,13 +15,15 @@ class WelcomeController extends Controller
         $query = Product::query();
         $categories = Category::all();
         if ($request->ajax()) {
-            if (empty($request->category)) {
+            if (empty($request->category)) 
+            {
                 $products = $query->get();
             }
 
-
-
+            else
+            {
             $products = $query->where(['catid' => $request->category])->get();
+            }
             return response()->json($products);
         }
         
@@ -29,11 +31,11 @@ class WelcomeController extends Controller
 
     public function index()
     {
-        $data = Product::latest()->paginate(3);
+        $data = Product::latest()->paginate(30);
         $datanew['newdata'] = " ";
         $data1=Category::get('cname');
 
         return view('welcome', compact('data','datanew','data1'))
-            ->with('i', (request()->input('page', 1) - 1) * 4);
+            ->with('i', (request()->input('page', 1) - 1) * 30);
     }
 }

@@ -20,11 +20,11 @@ class CategoryController extends Controller
     public function index()
     {
        
-        $data = Category::latest()->paginate(3);
+        $data = Category::latest()->paginate(30);
         $datanew['newdata'] = " ";
         
          return view('category.index',compact('data','datanew'))
-        ->with('i', (request()->input('page', 1) - 1) * 3);
+        ->with('i', (request()->input('page', 1) - 1) * 30);
         
         
     }
@@ -48,25 +48,21 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'cname'=>'required',
+            'cname'=>'required | min:2 | max:15',
+            'active'=>'required',
           
-        ]);
+        ],
+    [
+        'cname.required' =>'Category name is required',
+        'cname.min' =>'Category name should be minimum of 2 characters',
+        'cname.max' =>'Category name should be maximum of 15',
+        'active.required' =>'Please select active field',
+    ]);
         $category = $request->all();
         Category::create($category);
 
         return redirect()->route('category.index')
         ->with('Success', 'Category created successfully');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -92,12 +88,15 @@ class CategoryController extends Controller
         $request->validate([
             'cname' => 'required',
             'active' => 'required',
-        ]);
+        ],
+    [
+        'cname.required'=>'Category Name Required',
+        'active.required' =>'Please select active field',
+    ]);
 
         $category->update($request->all());
         
-         return redirect()->route('category.index')
-            ->with('success', 'Category updated successfully');
+         return redirect()->route('category.index')->with('success', 'Category updated successfully');
     }
 
     /**
@@ -106,12 +105,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy( Category $category)
     {
         $category->delete();
 
 
-        return redirect()->route('category.index')
-            ->with('success', 'Category deleted successfully');
+        return redirect()->route('category.index')->with('success', 'Category deleted successfully');
     }
 }

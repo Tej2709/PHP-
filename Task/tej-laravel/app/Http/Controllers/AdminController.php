@@ -22,12 +22,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $data = User::where('usertype','0')->latest()->paginate(3);
-        
+        $data = User::where('usertype','0')->latest()->paginate(30);
         $datanew['newdata'] = " ";
-
-        return view('admin.index', compact('data', 'datanew'))
-            ->with('i', (request()->input('page', 1) - 1) * 2);
+        return view('admin.index', compact('data', 'datanew'))->with('i', (request()->input('page', 1) - 1) * 30);
     }
 
     /**
@@ -56,7 +53,16 @@ class AdminController extends Controller
             'gender' => 'required',
             'hobbies' => 'required',
 
-        ]);
+        ],
+    [
+        'name.required' => 'Name is required',
+        'name.min' => 'Name should be at least minumum 2 characters',
+        'name.max' => 'The maximum value should only be 15 characters ',
+        'email.required' => 'Email is required',
+        'password.required' => 'Password is required',
+        'gender.required' => 'Please select a gender',
+        'hobbies.required' => 'Please checcked at least one hobbies',
+    ]);
         
         $user = new User;
         $user->name = $request->name;
@@ -109,7 +115,6 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required|min:2|max:100',
             'email' => 'required|unique:admins,email,'.$admin->id.',id',
-           
             'gender' => 'required',
             'hobbies' => 'required',
 
@@ -120,8 +125,7 @@ class AdminController extends Controller
         // $request_data['gender'] = 'active';
         $request_data = $request->all();
         $admin->update($request_data);
-        return redirect()->route('admin.index')
-            ->with('success', 'Updated Successfully');
+        return redirect()->route('admin.index')->with('success', 'Updated Successfully');
     }
 
     /**
@@ -130,11 +134,10 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(User $admin)
     {
         $admin->delete();
-
-        return redirect()->route('admin.index')
-            ->with('success', 'Admin deleted successfully');
+        return redirect()->route('admin.index')->with('success', 'Admin deleted successfully');
     }
 }

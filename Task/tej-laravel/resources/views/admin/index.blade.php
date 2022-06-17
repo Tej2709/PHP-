@@ -24,7 +24,7 @@
 @endif
 {{ $datanew['newdata'] }}
 <table class="table table-bordered">
-    <tr>
+    <tr class="table-success">
         <th>No</th>
         <th>Name</th>
         <th>Email</th>
@@ -63,6 +63,5 @@
     @endforeach
 </table>
 
-{!! $data->links() !!}
 </div>
 @endsection

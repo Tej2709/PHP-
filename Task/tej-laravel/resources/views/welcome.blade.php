@@ -14,7 +14,7 @@
             <h2>Product</h2>
         </div>
         <select id="category_id" name="cat_id">
-                <option value="">Select</option>
+                <option value="">All</option>
                         @foreach($data1 as $key => $value)
                             <option value="{{ $value->cname}}">{{ $value->cname}}</option>
                         @endforeach

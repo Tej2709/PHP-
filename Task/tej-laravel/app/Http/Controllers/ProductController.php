@@ -12,19 +12,39 @@ class ProductController extends Controller
     {
         $this->middleware('auth');
     }
+
+
+    public function filterProduct(Request $request)
+    {
+        $query = Product::query();
+        $categories = Category::all();
+        if ($request->ajax()) {
+            if (empty($request->category)) 
+            {
+                $products = $query->get();
+            }
+
+            else
+            {
+            $products = $query->where(['catid' => $request->category])->get();
+            }
+            return response()->json($products);
+        }
+        
+    }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function index()
     {
-        $data = Product::latest()->paginate(3);
+        $data = Product::latest()->paginate(30);
         $datanew['newdata'] = " ";
-        $data1 = Category::where('active','yes')->get('cname');
-        return view('product.index', compact('data', 'datanew','data1'))
-            ->with('i', (request()->input('page', 1) - 1) * 3);
+        $data1 = Category::where('active', 'yes')->get('cname');
+        return view('product.index', compact('data', 'datanew', 'data1'))->with('i', (request()->input('page', 1) - 1) * 30);
     }
 
     /**
@@ -34,8 +54,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $data = Category::where('active','yes')->get('cname');
-        return view('product.create',compact('data'));
+        $data = Category::where('active', 'yes')->get('cname');
+        return view('product.create', compact('data'));
     }
 
     /**
@@ -46,31 +66,37 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-       // $data = categories::all();
-       $request->validate([
+        // $data = categories::all();
+        $request->validate([
 
-        'pname' => 'required',
-        'catid' => 'required',
-        'image'=>'required | image |mimes : JPEG,png,jpg|max:20048',
-        'createby' => 'required',
-        'active' => 'required',
-    ]);
+            'pname' => 'required',
+            'catid' => 'required',
+            'image' => 'required | image |mimes : JPEG,png,jpg|max:20048',
+           
+            'active' => 'required',
+        ], [
+            'pname.required' => 'Product Name required',
+            'catid.required' => 'Please Select a Category',
+            'image.required' => 'Please Upload Image',
+            'image.type' => 'Only upload JPEG,png,jpg Formats',
+            'image.size' => 'Upload Size less than 2mb',
+            'active.required' => 'Please select active field',
+            
+        ]);
 
-    $imageName = time().'.'.$request->image->extension();
+        $imageName = time() . '.' . $request->image->extension();
 
-    $request->image->move(public_path('public/images'), $imageName);
+        $request->image->move(public_path('public/images'), $imageName);
 
-    $product=$request->all();
+        $product = $request->all();
 
-    $product['image'] = $imageName;
+        $product['image'] = $imageName;
 
-    Product::create($product);
+        Product::create($product);
 
-   
 
-    return redirect()->route('product.index')
-      ->with('success','product Added successfully.');
 
+        return redirect()->route('product.index')->with('success', 'product Added successfully.' );
     }
     /**
      * Display the specified resource.
@@ -92,7 +118,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $data = Category::get('cname');
-        return view('product.edit',compact('product','data'));
+        return view('product.edit', compact('product', 'data'));
     }
 
     /**
@@ -106,46 +132,31 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
 
-        if(!empty($request->image)) {
+        if (!empty($request->image)) 
+        {
 
-            unlink(public_path('public/images/'.$product->image));
-
-            $imageName = time().'.'.$request->image->extension();
-
+            unlink(public_path('public/images/' . $product->image));
+            $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('public/images'), $imageName);
-
             $product->pname = $request->pname;
-
             $product->catid = $request->category;
-
             $product->active = $request->active;
-
             // $product=$request->all();
-
             // $product['createdbyuser']=$user->id;
-
             $product['image'] = $imageName;
-
             $product->update();
-
-            return redirect('product') ->with('success','Product updated successfully ');
-
-        }else{
+            return redirect('product')->with('success', 'Product updated successfully ');
+        } 
+        else 
+        {
 
             $product->pname = $request->pname;
-
             $product->catid = $request->category;
-
             $product->active = $request->active;
-
             // $product['createdbyuser']=$user->id;
-
             $product->update();
-
-            return redirect('product')->with('success','Product updated successfully.');
-
+            return redirect('product')->with('success', 'Product updated successfully.');
         }
-
     }
 
     /**
@@ -157,7 +168,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('product.index')
-            ->with('success', 'Product deleted successfully');
+        return redirect()->route('product.index')->with('success', 'Product deleted successfully');
     }
 }

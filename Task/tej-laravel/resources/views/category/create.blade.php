@@ -31,8 +31,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Category Name:</strong>
-                <select class="form-control" name="category_id" id="category_id">
-                    <option value="">Selecte</option>
+             
                 <input type="text" name="cname" class="form-control" value="{{old('cname')}}" placeholder="Enter Category Name">
                 @if ($errors->has('cname'))
                     <span class="text-danger">{{ $errors->first('cname') }}</span>
