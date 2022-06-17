@@ -8,17 +8,22 @@ use App\Models\Category;
 
 class ProductController extends Controller
 {
+    public function  __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         $data = Product::latest()->paginate(3);
         $datanew['newdata'] = " ";
-
-        return view('product.index', compact('data', 'datanew'))
+        $data1 = Category::where('active','yes')->get('cname');
+        return view('product.index', compact('data', 'datanew','data1'))
             ->with('i', (request()->input('page', 1) - 1) * 3);
     }
 

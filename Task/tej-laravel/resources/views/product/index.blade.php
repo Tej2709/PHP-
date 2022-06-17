@@ -1,18 +1,17 @@
 @extends('layouts.app')
-
-
-
 @section('content')
-
-<div class="container">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
 <div class="row" style="margin-top: 5rem;">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
             <h2>Product</h2>
         </div>
         <div class="pull-right" style="float:right">
+     
             <a class="btn btn-warning" href="product/create">Add New Product</a>
-            <a class="btn btn-info" href="category/index">Category</a>
+            <a class="btn btn-info" href="category">Category</a>
             <a class="btn btn-secondary" href="{{ route('admin.index') }}"> AdminList</a>
         </div>
     </div>
@@ -35,6 +34,7 @@
         <th>Active</th>
         <th width="280px">Action</th>
     </tr>
+    <tbody id="tbody">
     @foreach($data as $key => $value)
     <tr>
         <td>{{ ++$i }}</td>
@@ -56,7 +56,12 @@
         </td>
     </tr>
     @endforeach
+</tbody>
 </table>
 
-</div>
+
+
+
+    {!! $data->link() !!}
+    </div>
 @endsection

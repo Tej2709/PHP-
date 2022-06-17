@@ -22,8 +22,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $data = User::latest()->paginate(3);
-        $data1 = User::where('usertype','0');
+        $data = User::where('usertype','0')->latest()->paginate(3);
+        
         $datanew['newdata'] = " ";
 
         return view('admin.index', compact('data', 'datanew'))

@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,11 +25,11 @@ use Illuminate\support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
- Route::resource('admin',AdminController::class );
-
+ Route::resource('admin',AdminController::class );  
  Route::resource('category',CategoryController::class );
  Route::resource('product',ProductController::class);
- Route::resource('welcome',WelcomeController::class);
+ 
+//  Route::resource('welcome',WelcomeController::class);
 
 //  Route::get('/category', 'CategoryController@index');
 //  Route::get('/add-category','CategoryController@create');
@@ -36,6 +37,8 @@ Route::get('/', function () {
 
 
 Auth::routes();
-
+Route::get('/filterProduct', [App\Http\Controllers\WelcomeController::class, 'filterProduct']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
+ Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
+
+//Route::get('/filterProduct', [App\Http\Controllers\HomeController::class, 'filterProduct']);
