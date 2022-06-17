@@ -1,6 +1,56 @@
 @extends('layouts.app')
 
 @section('content')
+<html>
+<head>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+<script>
+         $(document).ready(function() {
+            $("#admineditform").validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength:2,
+                        maxlength: 20,
+                    },
+                    email: {
+                        required: true,
+                        email: true,
+                        maxlength: 50
+                    },
+                   
+                  
+                   
+                },
+                messages: {
+                    name: {
+                        required: "Name  is required",
+                        minlength:"Name must be at least 2 characters",
+                        maxlength: "Name cannot be more than 20 characters"
+                    },
+                   
+                    email: {
+                        required: "Email is required",
+                        email: "Email must be a valid email address",
+                        maxlength: "Email cannot be more than 50 characters",
+                    },
+                   
+                 
+                  
+                   
+                }
+            });
+        });
+    </script>
+     <style>
+    label.error {
+         color: #dc3545;
+         font-size: 14px;
+    }
+</style>
+    </head>
 <div class="container">
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -22,7 +72,7 @@
     </ul>
 </div>
 @endif
-<form action="{{ route('admin.update', $admin->id) }}" method="POST">
+<form action="{{ route('admin.update', $admin->id) }}" method="POST" id="admineditform">
     @csrf
     @method('PUT')
 
@@ -32,7 +82,7 @@
             <div class="form-group">
                 <strong>Name:</strong>
                 <input type="text" name="name" value="{{ $admin->name }}" class="form-control"
-                    placeholder="Enter Your Name" required autofocus="off">
+                    placeholder="Enter Your Name" required autofocus="off" id="name">
                 @if ($errors->has('name'))
                 <span class="text-danger">{{ $errors->first('name') }}</span>
                 @endif
@@ -45,7 +95,7 @@
             <div class="form-group">
                 <strong>Email:</strong>
                 <input type="text" name="email" value="{{ $admin->email }}" class="form-control"
-                    placeholder="Enter your email" autofocus="off">
+                    placeholder="Enter your email" autofocus="off" id="email">
                 @if ($errors->has('email'))
                 <span class="text-danger">{{ $errors->first('email') }}</span>
                 @endif
@@ -95,4 +145,5 @@
 
 </form>
 </div>
+</html>
 @endsection

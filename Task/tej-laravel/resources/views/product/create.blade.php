@@ -1,6 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+<script>
+    
+         $(document).ready(function() {
+            $("#productcreateform").validate({
+                rules: {
+                    pname: {
+                        required: true,
+                        minlength:4,
+                        maxlength: 20,
+                    },
+                },
+                messages: {
+                    pname: {
+                        required: "Categoryname  is required",
+                        minlength:"Categoryname must be at least 4 characters",
+                        maxlength: "Name  be more than 20 characters"
+                    },
+                   
+                }
+            });
+        });
+    </script>
+     <style>
+    label.error {
+         color: #dc3545;
+         font-size: 14px;
+    }
+</style>
+</head>
 <div class="container">
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -24,14 +56,14 @@
 </div>
 @endif
 
-<form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data" id="productcreateform">
     @csrf
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
-                <input type="text" name="pname" class="form-control" value="{{old('pname')}}" placeholder="Enter Name">
+                <input type="text" name="pname" class="form-control" value="{{old('pname')}}" placeholder="Enter Name" id="pname">
                 @if ($errors->has('name'))
                 <span class="text-danger">{{ $errors->first('name') }}</span>
                 @endif

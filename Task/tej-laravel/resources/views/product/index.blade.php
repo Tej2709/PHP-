@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 @section('content')
 <head>
@@ -9,12 +10,7 @@
         <div class="pull-left">
             <h2>Product</h2>
         </div>
-        <select id="category_id" name="cat_id">
-                <option value="">All</option>
-                        @foreach($data1 as $key => $value)
-                            <option value="{{ $value->cname}}">{{ $value->cname}}</option>
-                        @endforeach
-                </select>
+     
 
         <div class="pull-right" style="float:right">
      
@@ -68,45 +64,5 @@
 </table>
     </div>
 </div>
-<script>
-        $(document).ready(function(){
-           
 
-            $('#category_id').change(function(){
-               
-                var category = $(this).val();
-                
-               
-                $.ajax({
-                    url:"{{ url('filterProduct') }}",
-                    type:"GET",
-                    data:{'category' : category},
-                    success: function(data){
-                        
-                        var products = data;
-                        
-                        var html = '';
-                        if(products.length > 0) {
-                            for(let i = 0; i < products.length; i++){
-                                html +='<tr>\
-                                        <td>'+(i+1)+'</td>\
-                                        <td>'+products[i]['pname']+'</td>\
-                                        <td>'+products[i]['catid']+'</td>\
-                                        <td> <img src="public/images/'+products[i]['image']+'"width="100" height="80"> </td>\
-                                        <td>'+products[i]['createby']+'</td>\
-                                        <td>'+products[i]['active']+'</td>\
-                                        <td><form action="{{ route('product.destroy',$value->id) }}" method="POST"><a class="btn btn-primary" href="{{ route('product.edit',$value->id) }}">Edit</a> @csrf @method('DELETE') <button type="submit" class="btn btn-danger">Delete</button></form></td> </tr>';
-                            }
-                        }
-                        else{
-                            html +='<tr>\
-                                    <td>No Products Found</td>\
-                                    </tr>';
-                        }
-                        $("#tbody").html(html);
-                    }
-                });
-            });
-        });
-    </script>
 @endsection

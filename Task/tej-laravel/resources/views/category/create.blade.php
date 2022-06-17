@@ -1,6 +1,37 @@
 @extends('layouts.app')
   
 @section('content')
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+<script>
+         $(document).ready(function() {
+            $("#categorycreateform").validate({
+                rules: {
+                    cname: {
+                        required: true,
+                        minlength:4,
+                        maxlength: 20,
+                    },
+                },
+                messages: {
+                    cname: {
+                        required: "Categoryname  is required",
+                        minlength:"Categoryname must be at least 4 characters",
+                        maxlength: "Name  be more than 20 characters"
+                    },
+                   
+                }
+            });
+        });
+    </script>
+     <style>
+    label.error {
+         color: #dc3545;
+         font-size: 14px;
+    }
+</style>
+</head>
 <div class="container">
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -24,7 +55,7 @@
     </div>
 @endif
    
-<form action="{{ route('category.store') }}" method="POST">
+<form action="{{ route('category.store') }}" method="POST" id="categorycreateform">
     @csrf
   
      <div class="row">
@@ -32,7 +63,7 @@
             <div class="form-group">
                 <strong>Category Name:</strong>
              
-                <input type="text" name="cname" class="form-control" value="{{old('cname')}}" placeholder="Enter Category Name">
+                <input type="text" name="cname" class="form-control" value="{{old('cname')}}" placeholder="Enter Category Name" id="cname">
                 @if ($errors->has('cname'))
                     <span class="text-danger">{{ $errors->first('cname') }}</span>
                 @endif
