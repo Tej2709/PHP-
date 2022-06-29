@@ -1,7 +1,4 @@
 @extends('layouts.app')
-
-
-
 @section('content')
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -31,9 +28,9 @@
 
 <br>
 
-<table class="table table-bordered">
+<table class="table table-hover">
 
-<tr>
+<tr class="table-success">
         <th>No</th>
         <th>Product</th>
         <th>Category</th>

@@ -6,23 +6,32 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
-
+use Laravel\Ui\Presets\React;
 
 class AdminController extends Controller
 {
 
-    public function  __construct()
-    {
-        $this->middleware('auth');
-    }
+        public function  __construct()
+        {
+            $this->middleware('auth');
+        }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = User::where('usertype','0')->latest()->paginate(30);
+
+        if($request->has('trashed'))
+        {
+            $data = User::where('usertype','0')->latest()->onlyTrashed()->paginate(30);
+        }
+        else 
+        {
+            $data = User::where('usertype','0')->latest()->withoutTrashed()->paginate(30);
+        }
+      
         $datanew['newdata'] = " ";
         return view('admin.index', compact('data', 'datanew'))->with('i', (request()->input('page', 1) - 1) * 30);
     }
@@ -139,5 +148,18 @@ class AdminController extends Controller
     {
         $admin->delete();
         return redirect()->route('admin.index')->with('success', 'Admin deleted successfully');
+    }
+
+    public function restore(Request $Request,$id)
+    {
+        User::onlyTrashed()->find($id)->restore();
+        return redirect()->route('admin.index')->with('success', 'Admin restored successfully');
+    
+    }
+
+    public function fdelete(Request $request, $id)
+    {
+        User::onlyTrashed()->find($id)->forceDelete();
+        return redirect()->back()->with('success', 'Admin deleted successfully');
     }
 }

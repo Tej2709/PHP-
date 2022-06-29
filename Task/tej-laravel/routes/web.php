@@ -40,5 +40,6 @@ Auth::routes();
 Route::get('/filterProduct', [App\Http\Controllers\WelcomeController::class, 'filterProduct']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
  Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
-
+Route::get('admin/restore/{id}',[App\Http\Controllers\AdminController::class, 'restore'])->name('admin.restore');
+Route::get('admin/fdelete/{id}',[App\Http\Controllers\AdminController::class, 'fdelete'])->name('admin.fdelete');
 //Route::get('/filterProduct', [App\Http\Controllers\HomeController::class, 'filterProduct']);

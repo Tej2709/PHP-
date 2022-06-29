@@ -14,13 +14,13 @@
         </div>
     </div>
 </div>
-
+<div id="msg">
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
     <p>{{ $message }}</p>
 </div>
 @endif
-
+</div>
 <table class="table table-bordered">
     <tr>
         <th>No</th>
