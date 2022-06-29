@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2022 at 06:04 AM
+-- Generation Time: Jun 29, 2022 at 11:59 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -57,11 +57,10 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `cname`, `active`, `created_at`, `updated_at`) VALUES
-(1, 'Home', 'yes', '2022-06-14 14:22:28', '2022-06-14 14:22:41'),
-(2, 'Grocery', 'yes', '2022-06-14 14:30:35', '2022-06-14 14:30:35'),
-(3, 'Clothes', 'yes', '2022-06-15 05:41:56', '2022-06-17 04:39:50'),
-(4, 'Toys', 'yes', '2022-06-16 23:08:31', '2022-06-17 04:39:39'),
-(5, 'Sport', 'yes', '2022-06-16 23:57:34', '2022-06-17 00:00:51');
+(1, 'Grocery', 'yes', '2022-06-21 01:53:50', '2022-06-21 01:53:50'),
+(2, 'Clothes', 'yes', '2022-06-21 01:53:58', '2022-06-21 01:53:58'),
+(3, 'Toys', 'yes', '2022-06-21 01:54:10', '2022-06-21 01:54:10'),
+(4, 'Electronic', 'yes', '2022-06-21 01:54:20', '2022-06-21 01:54:20');
 
 -- --------------------------------------------------------
 
@@ -96,13 +95,14 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2022_06_06_112837_create_admins_table', 1),
-(6, '2022_06_09_122525_categories', 1),
-(7, '2022_06_13_050158_products', 1);
+(8, '2014_10_12_000000_create_users_table', 1),
+(9, '2014_10_12_100000_create_password_resets_table', 1),
+(10, '2019_08_19_000000_create_failed_jobs_table', 1),
+(11, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(12, '2022_06_06_112837_create_admins_table', 1),
+(13, '2022_06_09_122525_categories', 1),
+(14, '2022_06_13_050158_products', 1),
+(15, '2022_06_29_045605_add_deletedat_to_users', 2);
 
 -- --------------------------------------------------------
 
@@ -156,12 +156,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `pname`, `catid`, `image`, `createby`, `active`, `created_at`, `updated_at`) VALUES
-(22, 'T-shirt', 'Clothes', '1655460992.jpg', 'testuser@kcsitglobal.com', 'yes', '2022-06-17 04:46:32', '2022-06-17 04:46:32'),
-(23, 'Maggi', 'Grocery', '1655461007.jpg', 'testuser@kcsitglobal.com', 'yes', '2022-06-17 04:46:47', '2022-06-17 04:46:47'),
-(24, 'T.V.', 'Home', '1655461022.jpg', 'testuser@kcsitglobal.com', 'yes', '2022-06-17 04:47:02', '2022-06-17 04:47:02'),
-(25, 'Iron', 'Home', '1655461048.jpg', 'testuser@kcsitglobal.com', 'yes', '2022-06-17 04:47:28', '2022-06-17 04:47:28'),
-(26, 'Water Melon', 'Grocery', '1655461675.jpg', 'tejsoni@gmail.com', 'yes', '2022-06-17 04:57:55', '2022-06-17 04:57:55'),
-(27, 'Dinokids', 'Toys', '1655461799.jpg', 'vp@gmail.com', 'yes', '2022-06-17 04:59:59', '2022-06-17 04:59:59');
+(1, 'TATA Coffee', 'Grocery', '1655796286.jpg', 'testuser@kcsitglobal.com', 'yes', '2022-06-21 01:54:46', '2022-06-21 01:54:46'),
+(2, 'T-shirt', 'Clothes', '1655796337.jpg', 'tejsoni@gmail.com', 'yes', '2022-06-21 01:55:37', '2022-06-21 01:55:37'),
+(3, 'Oreo', 'Grocery', '1655796396.jpg', 'vp@gmail.com', 'yes', '2022-06-21 01:56:36', '2022-06-21 01:56:36'),
+(4, 'Dinokids', 'Toys', '1655888216.jpg', 'tejsoni@gmail.com', 'yes', '2022-06-22 03:26:56', '2022-06-22 03:26:56');
 
 -- --------------------------------------------------------
 
@@ -180,28 +178,22 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `gender`, `hobbies`, `password`, `usertype`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'SuperAdmin', 'testuser@kcsitglobal.com', 'male', NULL, '$2y$10$OBAk8TCAS3Nw3yYdddSQ0..w4YnJbRrnar4EhA6p/8WYUE98a4EfG', '1', NULL, NULL, '2022-06-14 05:09:47', '2022-06-14 05:09:47'),
-(2, 'Tej Soni', 'tejsoni@gmail.com', 'male', 'Cricket,Singing', '$2y$10$xjDrgfOhX7jRoa.85gaFb..MCxewoLCCGCl9zlNtsK04m0pwZMyua', '0', NULL, NULL, '2022-06-14 05:11:29', '2022-06-14 05:11:29'),
-(7, 'Milind Patil', 'mi@gmail.com', 'male', 'Cricket,Singing,Swimming', '$2y$10$YufEW2kEMP7gLfzuDJM3KexoR7.qC4v6zU6qF3atZgles8VkiYzrW', '0', NULL, NULL, '2022-06-15 07:10:15', '2022-06-17 03:32:02'),
-(9, 'Vishruti Patel', 'vp@gmail.com', 'female', 'Singing,Shopping', '$2y$10$N1Y/Vya4Fq4nnF0wlqxWcOvl.zqWs7UIRvWgUSiwpw9vDSoh1cOYi', '0', NULL, NULL, '2022-06-15 23:35:49', '2022-06-15 23:35:49');
+INSERT INTO `users` (`id`, `name`, `email`, `gender`, `hobbies`, `password`, `usertype`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'SuperAdmin', 'testuser@kcsitglobal.com', 'male', NULL, '$2y$10$mH5ECJ6VagyK98Hlhm4Tc.A0AnH59xpTKyXKrEHWyPyViR87mghEC', '1', NULL, NULL, '2022-06-21 01:51:45', '2022-06-21 01:51:45', NULL),
+(2, 'Vishruti Patel', 'vp@gmail.com', 'female', 'Singing,Shopping', '$2y$10$CMtcFVIx3yf3v8Q9lUTrk.mv5Z1GVatdpHkzAZbuABHa1bzx7Zcui', '0', NULL, NULL, '2022-06-21 01:52:57', '2022-06-21 01:53:05', NULL),
+(3, 'Tej Soni', 'tejsoni@gmail.com', 'male', 'Cricket,Shopping', '$2y$10$GUjnFPuCmRu0Yqfnx6GJH.kt70WpIeTYNBEv6CHs5Cx1LfXcveXEG', '0', NULL, NULL, '2022-06-21 01:53:30', '2022-06-29 03:19:46', NULL);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `admins`
---
-ALTER TABLE `admins`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `categories`
@@ -254,16 +246,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `admins`
---
-ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -275,7 +261,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -287,13 +273,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
