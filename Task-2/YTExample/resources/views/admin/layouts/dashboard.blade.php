@@ -95,21 +95,21 @@
         </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/posts">
+        <a class="nav-link" href="/products">
           <i class="fas fa-fw fa fa-cart-arrow-down"></i>
           <span>Products</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/posts">
+        <a class="nav-link" href="/category">
           <i class="fas fa-fw fa fa-tags"></i>
           <span>Category</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/posts">
+        <a class="nav-link" href="/articles">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Posts</span></a>
+          <span>Article</span></a>
       </li>
      
       {{-- <li class="nav-item">
@@ -200,6 +200,7 @@
   @yield('js_post_page')
   @yield('js_user_page') 
   @yield('js_role_page') 
+  @yield('js_category_page') 
   </body>
     
 </html>

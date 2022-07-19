@@ -21,7 +21,7 @@
           </div>
           <div class="mr-5">Admins</div>
         </div>
-        <a class="card-footer text-white clearfix small z-1" href="#">
+        <a class="card-footer text-white clearfix small z-1" href="users">
           <span class="float-left">View Details</span>
           <span class="float-right">
             <i class="fas fa-angle-right"></i>
@@ -37,7 +37,7 @@
           </div>
           <div class="mr-5">Article's</div>
         </div>
-        <a class="card-footer text-white clearfix small z-1" href="#">
+        <a class="card-footer text-white clearfix small z-1" href="articles">
           <span class="float-left">View Details</span>
           <span class="float-right">
             <i class="fas fa-angle-right"></i>
@@ -53,7 +53,7 @@
           </div>
           <div class="mr-5">Product's</div>
         </div>
-        <a class="card-footer text-white clearfix small z-1" href="#">
+        <a class="card-footer text-white clearfix small z-1" href="product/">
           <span class="float-left">View Details</span>
           <span class="float-right">
             <i class="fas fa-angle-right"></i>
