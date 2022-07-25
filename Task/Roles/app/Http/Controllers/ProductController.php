@@ -5,6 +5,7 @@ use App\Models\Product;
 use App\Models\Category;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
+use Laravel\Ui\Presets\React;
 
 class ProductController extends Controller
 {
@@ -19,10 +20,10 @@ class ProductController extends Controller
         $this->middleware('permission:product-delete',['only' =>['destroy']]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $data= Product::join('users','users.id', '=' ,'createby')->get(['products.*','users.email']);
-        return view('products.index',['data' => $data]);
+        return view('products.index',['data' => $data])->with('i',($request->input('page',1)-1)*30);
     }
 
     public function create()

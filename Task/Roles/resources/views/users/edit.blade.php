@@ -1,7 +1,57 @@
 @extends('layouts.app')
 
 
-@section('content')\
+@section('content')
+
+<head>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#admineditform").validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 20,
+                    },
+                    email: {
+                        required: true,
+                        email: true,
+                        maxlength: 50
+                    },
+
+
+
+                },
+                messages: {
+                    name: {
+                        required: "Name  is required",
+                        minlength: "Name must be at least 2 characters",
+                        maxlength: "Name cannot be more than 20 characters"
+                    },
+
+                    email: {
+                        required: "Email is required",
+                        email: "Email must be a valid email address",
+                        maxlength: "Email cannot be more than 50 characters",
+                    },
+
+
+
+
+                }
+            });
+        });
+    </script>
+    <style>
+        label.error {
+            color: #dc3545;
+            font-size: 14px;
+        }
+    </style>
+</head>
 <div class="container">
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -11,7 +61,7 @@
 
         </div>
     </div>
-
+    <br>
 
     @if (count($errors) > 0)
     <div class="alert alert-danger">
@@ -25,7 +75,7 @@
     @endif
 
 
-    {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
+    {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]])  !!}
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -43,9 +93,15 @@
         </div>
         <br>
 
-      
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Gender:</strong>
+                <input type="radio" name="gender" value="male" {{ ($user->gender=="male")? "checked" : "" }}>Male
+                <input type="radio" name="gender" value="female" {{ $user->gender=="female"? "checked" : "" }}>Female
 
-        
+            </div>
+        </div>
+        <br>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -53,6 +109,7 @@
                 {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
             </div>
         </div>
+        <br>
         <br>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -62,5 +119,5 @@
 
     </div>
     {!! Form::close() !!}
-</div>  
+</div>
 @endsection

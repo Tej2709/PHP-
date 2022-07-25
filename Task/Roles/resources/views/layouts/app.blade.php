@@ -47,11 +47,25 @@
 
                         @else
 
-                        <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
-                        <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
-                        <li><a class="nav-link" href="{{ route('category.index') }}">Manage Category</a></li>
-                        <li><a class="nav-link" href="{{ route('products.index') }}">Manage Product</a></li>
-                        <li><a class="nav-link" href="{{ route('articles.index') }}">Manage Article</a></li>
+                        @can('user-list')
+                        <li><a class="nav-link" href="{{ route('users.index') }}"> Users</a></li>
+                        @endcan
+
+                        @can('role-list')
+                        <li><a class="nav-link" href="{{ route('roles.index') }}"> Role</a></li>
+                      @endcan
+
+                        @can('category-list')
+                        <li><a class="nav-link" href="{{ route('category.index') }}"> Category</a></li>
+                        @endcan
+
+                        @can('product-list')
+                        <li><a class="nav-link" href="{{ route('products.index') }}"> Product</a></li>
+                        @endcan
+
+                        @can('article-list')
+                        <li><a class="nav-link" href="{{ route('articles.index') }}"> Article</a></li>
+                        @endcan
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -80,4 +94,5 @@
         </main>
     </div>
 </body>
+
 </html>

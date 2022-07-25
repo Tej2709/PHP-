@@ -16,10 +16,10 @@ class ArticleController extends Controller
         $this->middleware('permission:article-delete', ['only' => ['destroy']]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $data = Article::latest()->get();
-        return view('articles.index', ['data' => $data]);
+        return view('articles.index', ['data' => $data])->with('i',($request->input('page',1)-1)*30);
     }
 
     public function create()
